@@ -1,4 +1,4 @@
-# Template for easy sites with NextJS
+# Cargo Hackaton
 
 ## Getting Started
 
