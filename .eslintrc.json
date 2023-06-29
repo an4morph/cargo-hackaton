@@ -5,6 +5,7 @@
   ],
   "plugins": ["unused-imports"],
   "rules": {
+    "react/display-name": "off",
     "react/boolean-prop-naming": ["error", { "validateNested": true }],
     "no-console": "warn",
     "quotes": ["error", "single"],
