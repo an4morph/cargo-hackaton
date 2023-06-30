@@ -2,6 +2,7 @@
 
 import { PrimaryButton } from '@/components/button/primary'
 import { BasicInput } from '@/components/input/base'
+import Link from 'next/link'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 type LoginForm = {
@@ -18,6 +19,18 @@ export default function LoginPage(): JSX.Element {
 
   return (
     <div className="responsive pt-10">
+      <div className="flex flex-col [&>*]:mb-6">
+        <Link href="/sh/dashboard">
+          <PrimaryButton>Войти как Shipper</PrimaryButton>
+        </Link>
+        <Link href="/d/dashboard">
+          <PrimaryButton>Войти как Driver</PrimaryButton>
+        </Link>
+        <Link href="/c/dashboard">
+          <PrimaryButton>Войти как Company</PrimaryButton>
+        </Link>
+      </div>
+      <h2 className="text-2xl">Эту страницу еще надо доработать, продумать процесс авторизации и регистрации</h2>
       <form className="paper p-4 w-1/2" onSubmit={handleSubmit(onSubmit)}>
         <BasicInput
           id="username"
