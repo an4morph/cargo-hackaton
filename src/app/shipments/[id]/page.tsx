@@ -1,3 +1,4 @@
+import { BackButton } from '@/components/button/back'
 import { PrimaryButton } from '@/components/button/primary'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -26,6 +27,7 @@ const responses = [
 export default async function ShimpmentPage({ params: { id } }: IProps): Promise<JSX.Element> {
   return (
     <div className="responsive py-10">
+      <BackButton className="mb-4" />
       <h1 className="text-xl mb-4">Отправка №{id}</h1>
 
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laborum maxime incidunt doloribus natus, dolores aliquam commodi ex suscipit sed molestias distinctio quaerat repudiandae reiciendis saepe quidem rem harum deleniti facilis voluptates facere. Eaque eveniet quo quos eligendi tempore, voluptatem dolore labore veritatis fugit tenetur pariatur corrupti sunt magnam totam necessitatibus aut sint perspiciatis hic aperiam maxime inventore dolores ratione nulla voluptate! Tenetur ipsa perferendis amet, odit maiores in dolorem numquam veniam repellendus, ab excepturi aliquam dolorum eius nobis veritatis error asperiores! Totam labore reprehenderit, eum harum, vel, ratione minima eveniet eligendi accusantium consectetur optio rem blanditiis autem repellat rerum.</p>
