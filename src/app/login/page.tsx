@@ -1,20 +1,18 @@
 'use client'
 
 import { PrimaryButton } from '@/components/button/primary'
-import { BasicInput } from '@/components/input/base'
+import { useRouter } from 'next/navigation'
+import { LoginForm } from '@/components/login-form'
 import Link from 'next/link'
-import { SubmitHandler, useForm } from 'react-hook-form'
-
-type LoginForm = {
-  username: string
-  password: string
-}
+import { SubmitHandler } from 'react-hook-form'
+import { LoginFormData } from '@/types/base.d'
 
 export default function LoginPage(): JSX.Element {
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginForm>()
+  const router = useRouter()
 
-  const onSubmit: SubmitHandler<LoginForm> = (data) => {
+  const onSubmit: SubmitHandler<LoginFormData> = (data) => {
     console.log('submit', data)
+    router.push('/sh/dashboard')
   }
 
   return (
@@ -31,32 +29,8 @@ export default function LoginPage(): JSX.Element {
         </Link>
       </div>
       <h2 className="text-2xl">Эту страницу еще надо доработать, продумать процесс авторизации и регистрации</h2>
-      <form className="paper p-4 w-1/2" onSubmit={handleSubmit(onSubmit)}>
-        <BasicInput
-          id="username"
-          label="Имя пользователя"
-          className="pb-4"
-          {...register('username', {
-            required: 'Обязательное поле',
-          })}
-          error={errors.username?.message}
-        />
-        <BasicInput
-          id="password"
-          type="password"
-          label="Пароль"
-          {...register('password', {
-            required: 'Обязательное поле',
-          })}
-          error={errors.password?.message}
-        />
 
-        <PrimaryButton
-          className="mt-4 w-full"
-        >
-          Войти
-        </PrimaryButton>
-      </form>
+      <LoginForm onSubmit={onSubmit} />
     </div>
   )
 }
