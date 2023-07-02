@@ -1,11 +1,17 @@
-import { ProfileReminder } from '@/components/profile-reminder/page'
-import { UserTypes } from '@/types/base.d'
+'use client'
 
-export default async function CompanyDashboardPage(): Promise<JSX.Element> {
+import { ProfileReminder } from '@/components/profile-reminder/page'
+import notifications from '@/store/notifications'
+import { UserTypes } from '@/types/base.d'
+import { observer } from 'mobx-react-lite'
+
+const CompanyDashboardPage = observer((): JSX.Element => {
   return (
     <div className="responsive">
       CompanyDashboardPage
-      <ProfileReminder userType={UserTypes.company} />
+      {notifications.showProfileFillNotice && <ProfileReminder userType={UserTypes.company} />}
     </div>
   )
-}
+})
+
+export default CompanyDashboardPage

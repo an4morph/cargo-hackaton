@@ -1,7 +1,10 @@
+'use client'
 import { PrimaryButton } from '@/components/button/primary'
 import { ProfileReminder } from '@/components/profile-reminder/page'
 import { UserTypes } from '@/types/base.d'
+import notificatons from '@/store/notifications'
 import Link from 'next/link'
+import { observer } from 'mobx-react-lite'
 
 const shipments = [
   { id: 1, from: 'NY', to: 'LA' },
@@ -11,7 +14,7 @@ const shipments = [
   { id: 5, from: 'NY', to: 'LA' },
 ]
 
-export default async function ShipperDashboardPage(): Promise<JSX.Element> {
+const ShipperDashboardPage = observer((): JSX.Element => {
   return (
     <div className="responsive py-10">
       <h1 className="text-xl mb-4">Мои заявки (shipments)</h1>
@@ -41,7 +44,9 @@ export default async function ShipperDashboardPage(): Promise<JSX.Element> {
         </div>
       </div>
 
-      <ProfileReminder userType={UserTypes.shipper} />
+      {notificatons.showProfileFillNotice && <ProfileReminder userType={UserTypes.shipper} />}
     </div>
   )
-}
+})
+
+export default ShipperDashboardPage

@@ -7,14 +7,20 @@ import { BsArrowRight } from 'react-icons/bs'
 import Link from 'next/link'
 import { UserTypes } from '@/types/base.d'
 import { SecondaryButton } from '@/components/button/secondary'
+import { observer } from 'mobx-react-lite'
+import notificatons from '@/store/notifications'
 
 interface IProps {
   userType: UserTypes
 }
 
-export const ProfileReminder = ({ userType }: IProps): JSX.Element => {
+export const ProfileReminder = observer(({ userType }: IProps): JSX.Element => {
   const [isOpen, setOpen] = useState(true)
-  const onClose = () => setOpen(false)
+
+  const onClose = () => {
+    setOpen(false)
+    notificatons.hideProfileFillNotice()
+  }
   return (
     <InfoModal title="Notice" isOpen={isOpen} onClose={onClose}>
       <p className="mb-5 text-slate-600">
@@ -33,4 +39,4 @@ export const ProfileReminder = ({ userType }: IProps): JSX.Element => {
       </SecondaryButton>
     </InfoModal>
   )
-}
+})

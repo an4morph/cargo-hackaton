@@ -63,6 +63,7 @@
     "react/prefer-read-only-props": "error",
     "react/self-closing-comp": "error",
     "no-unused-vars": "off",
+    "import/no-anonymous-default-export": "off",
 		"unused-imports/no-unused-vars": [
 			"warn",
 			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }

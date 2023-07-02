@@ -1,11 +1,17 @@
+'use client'
+
 import { ProfileReminder } from '@/components/profile-reminder/page'
 import { UserTypes } from '@/types/base.d'
+import { observer } from 'mobx-react-lite'
+import notificatons from '@/store/notifications'
 
-export default async function DriverDashboardPage(): Promise<JSX.Element> {
+const DriverDashboardPage = observer((): JSX.Element => {
   return (
     <div className="responsive">
       DriverDashboardPage
-      <ProfileReminder userType={UserTypes.driver} />
+      {notificatons.showProfileFillNotice && <ProfileReminder userType={UserTypes.driver} />}
     </div>
   )
-}
+})
+
+export default DriverDashboardPage
