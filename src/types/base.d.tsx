@@ -14,7 +14,7 @@ export interface IBaseModalProps {
 export type TextTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
 
 export enum UserTypes {
-  shipper,
-  driver,
-  company
+  shipper = 'shipper',
+  driver = 'driver',
+  company = 'company'
 }

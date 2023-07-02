@@ -1,4 +1,6 @@
 import { PrimaryButton } from '@/components/button/primary'
+import { ProfileReminder } from '@/components/profile-reminder/page'
+import { UserTypes } from '@/types/base.d'
 import Link from 'next/link'
 
 const shipments = [
@@ -38,6 +40,8 @@ export default async function ShipperDashboardPage(): Promise<JSX.Element> {
           </ul>
         </div>
       </div>
+
+      <ProfileReminder userType={UserTypes.shipper} />
     </div>
   )
 }
