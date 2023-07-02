@@ -12,3 +12,16 @@ export interface IBaseModalProps {
 }
 
 export type TextTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
+
+export enum UserTypes {
+  shipper,
+  driver,
+  company
+}
+
+export interface SignUpFormData {
+  email: string
+  password: string
+  password2: string
+  userType: UserTypes
+}

@@ -1,3 +1,4 @@
+import { ErrorText } from '@/components/error'
 import cx from 'classnames'
 import { ChangeEvent, forwardRef } from 'react'
 import { IoWarning } from 'react-icons/io5'
@@ -33,12 +34,7 @@ export const BasicInput = forwardRef<HTMLInputElement, IProps>(({
           { 'border-red-500': !!error }
         )}
       />
-      {error && (
-        <div className="text-red-500 text-sm pt-1">
-          <IoWarning className="mr-1 inline-block" />
-          {error}
-        </div>
-      )}
+      {error && <ErrorText className="pt-1">{error}</ErrorText>}
     </div>
   )
 })
