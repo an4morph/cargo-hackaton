@@ -3,10 +3,13 @@
 import { BasicInput } from '@/components/input/base'
 import { PrimaryButton } from '@/components/button/primary'
 import { useForm } from 'react-hook-form'
+import { UserTypes } from '@/types/base.d'
+import { UserTypeRadioGroup } from '@/components/user-type-radio-group'
 
-export interface LoginFormData {
+interface LoginFormData {
   email: string
   password: string
+  userType: UserTypes
 }
 
 const LoginPage = (): JSX.Element => {
@@ -20,6 +23,13 @@ const LoginPage = (): JSX.Element => {
   return (
     <div className="flex justify-center items-center mt-10">
       <form className="paper p-4 w-full lg:w-1/2 2xl:w-1/3">
+        <UserTypeRadioGroup
+          className="mb-6"
+          registerData={register('userType', {
+            required: 'You should choose one of the type',
+          })}
+          error={errors.userType?.message}
+        />
         <BasicInput
           id="email"
           label="Email"

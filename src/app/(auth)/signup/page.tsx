@@ -3,9 +3,15 @@
 import { PrimaryButton } from '@/components/button/primary'
 import { BasicInput } from '@/components/input/base'
 import { UserTypeRadioGroup } from '@/components/user-type-radio-group'
-import { SignUpFormData } from '@/types/base.d'
+import { UserTypes } from '@/types/base.d'
 import { useForm } from 'react-hook-form'
 
+export interface SignUpFormData {
+  email: string
+  password: string
+  password2: string
+  userType: UserTypes
+}
 
 const SignUpPage = ():JSX.Element => {
   const { register, handleSubmit, formState: { errors }, getValues } = useForm<SignUpFormData>()
@@ -25,7 +31,9 @@ const SignUpPage = ():JSX.Element => {
       <form className="paper p-4 w-full lg:w-1/2 2xl:w-1/3">
         <UserTypeRadioGroup
           className="mb-6"
-          register={register}
+          registerData={register('userType', {
+            required: 'You should choose one of the type',
+          })}
           error={errors.userType?.message}
         />
 

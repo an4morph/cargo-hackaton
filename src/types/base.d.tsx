@@ -18,10 +18,3 @@ export enum UserTypes {
   driver,
   company
 }
-
-export interface SignUpFormData {
-  email: string
-  password: string
-  password2: string
-  userType: UserTypes
-}

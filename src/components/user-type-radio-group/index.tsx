@@ -3,13 +3,12 @@ import style from './style.module.css'
 import { BsBoxSeam } from 'react-icons/bs'
 import { TbTruckDelivery } from 'react-icons/tb'
 import { FaUserTie, FaCheck } from 'react-icons/fa'
-import { UseFormRegister } from 'react-hook-form'
-import { SignUpFormData } from '@/types/base.d'
+import { UseFormRegisterReturn } from 'react-hook-form'
 import { ErrorText } from '../error'
 
 interface IProps {
   className?: string
-  register: UseFormRegister<SignUpFormData>
+  registerData: UseFormRegisterReturn
   error?: string
 }
 
@@ -31,7 +30,7 @@ const options = [
   },
 ]
 
-export const UserTypeRadioGroup = ({ className, register, error }: IProps): JSX.Element => {
+export const UserTypeRadioGroup = ({ className, registerData, error }: IProps): JSX.Element => {
   return (
     <fieldset className={cx(className, '')}>
       {
@@ -41,9 +40,7 @@ export const UserTypeRadioGroup = ({ className, register, error }: IProps): JSX.
               type="radio"
               id={value}
               value={value}
-              {...register('userType', {
-                required: 'You should choose one of the type',
-              })}
+              {...registerData}
             />
             <label htmlFor={value}>
               {icon}
