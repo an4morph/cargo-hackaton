@@ -1,7 +1,5 @@
 'use client'
 
-import { ActiveLink } from '@/components/active-link'
-import { PrimaryButton } from '@/components/button/primary'
 import cx from 'classnames'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'

@@ -14,6 +14,7 @@ const SignUpPage = ():JSX.Element => {
   const { register, handleSubmit, formState: { errors }, getValues } = useForm<SignUpFormData>()
 
   const onSubmit = (data: SignUpFormData) => {
+    // eslint-disable-next-line
     console.log(data)
   }
 

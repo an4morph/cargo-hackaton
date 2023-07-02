@@ -13,6 +13,7 @@ const LoginPage = (): JSX.Element => {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>()
 
   const onSubmit = (data: LoginFormData) => {
+    // eslint-disable-next-line
     console.log(data)
   }
 

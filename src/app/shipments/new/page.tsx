@@ -15,6 +15,7 @@ export default function NewShipmentFormPage(): JSX.Element {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
+    // eslint-disable-next-line
     console.log('submit', data)
   }
 
