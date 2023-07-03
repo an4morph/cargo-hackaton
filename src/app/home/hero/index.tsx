@@ -11,7 +11,7 @@ export const Hero = (): JSX.Element => {
           <h1 className="text-4xl"><span className="font-bold">Fast</span> and <span className="font-bold">affordable</span> cargo transportation with us.</h1>
           <p className="my-10">We help and simplify the work with cargo transportation! more than 300 drivers are waiting for your order.</p>
           <Link href="/login">
-            <PrimaryButton>Начать работу</PrimaryButton>
+            <PrimaryButton>Get start</PrimaryButton>
           </Link>
         </div>
         <div>
