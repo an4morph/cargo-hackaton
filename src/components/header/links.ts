@@ -6,12 +6,12 @@ export const links = [
   },
   {
     id: 2,
-    text: 'Menu 2',
-    href: '/',
+    text: 'Contact Us',
+    href: '/contact',
   },
-  {
-    id: 3,
-    text: 'Menu 3',
-    href: '/',
-  },
+  // {
+  //   id: 3,
+  //   text: 'Menu 3',
+  //   href: '/',
+  // },
 ]

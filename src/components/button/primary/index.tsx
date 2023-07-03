@@ -13,8 +13,8 @@ export const PrimaryButton = ({ className, children, onClick }: IProps): JSX.Ele
     <button
       onClick={onClick}
       className={cx(className,
-        'rounded-md bg-brand-500 py-2 px-3 text-white',
-        'hover:bg-brand-600 transition-all duration-300',
+        'bg-black py-3 px-8 text-white',
+        'hover:shadow-2xl transition-all duration-300',
         'active:scale-95'
       )}
     >
