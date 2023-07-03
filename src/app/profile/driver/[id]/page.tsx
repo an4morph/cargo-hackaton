@@ -13,15 +13,13 @@ export default async function ProfileDriverPage({ params: { id } }: IProps): Pro
     <div className="responsive py-10">
       <div className="flex justify-between">
         <div className="flex w-1/2 gap-x-6">
-          <Link href="/home/driver.jpg">
-            <Image
-              width="150"
-              height="150"
-              className="object-cover"
-              alt="driver avatar"
-              src="/home/driver.jpg"
-            />
-          </Link>
+          <Image
+            width="150"
+            height="150"
+            className="object-cover"
+            alt="driver avatar"
+            src="/home/driver.jpg"
+          />
           <div className="flex-col justify-between">
             <div>
               <h1 className="text-3xl font-bold"> Duglas Cameron</h1>
@@ -100,26 +98,28 @@ export default async function ProfileDriverPage({ params: { id } }: IProps): Pro
               />
             </div>
             <table className="w-full border-collapse">
-              <tr className="w-full">
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">Year of release</td>
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">2005</td>
-              </tr>
-              <tr>
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full bg-gray-300">Body type</td>
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full bg-gray-300">Truck</td>
-              </tr>
-              <tr>
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">Length,</td>
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">mm 8000</td>
-              </tr>
-              <tr>
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full bg-gray-300">Width,</td>
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full bg-gray-300">mm 2700</td>
-              </tr>
-              <tr>
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">Height,</td>
-                <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">mm 4000</td>
-              </tr>
+              <tbody>
+                <tr className="w-full">
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">Year of release</td>
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">2005</td>
+                </tr>
+                <tr>
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full bg-gray-300">Body type</td>
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full bg-gray-300">Truck</td>
+                </tr>
+                <tr>
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">Length,</td>
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">mm 8000</td>
+                </tr>
+                <tr>
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full bg-gray-300">Width,</td>
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full bg-gray-300">mm 2700</td>
+                </tr>
+                <tr>
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">Height,</td>
+                  <td className="border-solid border-2 border-gray-400 py-2 px-10 w-full">mm 4000</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
