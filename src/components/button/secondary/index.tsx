@@ -9,14 +9,14 @@ interface IProps {
   type?: 'button' | 'submit'
 }
 
-export const PrimaryButton = ({ className, children, onClick, type = 'button' }: IProps): JSX.Element => {
+export const SecondaryButton = ({ className, children, onClick, type = 'button' }: IProps): JSX.Element => {
   return (
     <button
       onClick={onClick}
       type={type}
       className={cx(className,
-        'bg-black py-3 px-8 text-white',
-        'hover:shadow-2xl transition-all duration-300',
+        'rounded-md bg-transparent py-2 px-3 border-[1px] border-slate-300',
+        'hover:bg-slate-200 transition-all duration-300',
         'active:scale-95'
       )}
     >

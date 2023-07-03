@@ -1,0 +1,31 @@
+.field label {
+  @apply flex items-center border-[1px] px-3 py-1 rounded-full text-lg border-slate-300 cursor-pointer;
+}
+.field label svg {
+  @apply mr-3;
+}
+.field {
+  @apply mt-3;
+}
+.field:first-child {
+  @apply mt-0;
+}
+
+.field input {
+  @apply hidden;
+}
+
+.field label span {
+  flex: 1;
+}
+
+.field input:checked + label {
+  @apply bg-slate-900 text-white;
+}
+.field input:checked + label > .check {
+  @apply visible;
+}
+
+.check {
+  @apply invisible justify-self-end;
+}
