@@ -27,7 +27,7 @@ export const ProfileReminder = observer(({ userType }: IProps): JSX.Element => {
         To use the service, you need to fill out your profile information and wait
         for approval from the moderator. We advise you to go to your profile page and do this now.
       </p>
-      <Link href={`/profile/${userType}/edit`}>
+      <Link href={`/${userType}/profile/edit`}>
         <PrimaryButton className="flex items-center w-full mb-3 text-xl justify-center">
           Go to profile page
           <BsArrowRight className="ml-3" />
