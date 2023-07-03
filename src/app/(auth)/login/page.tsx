@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { UserTypes } from '@/types/base.d'
 import { UserTypeRadioGroup } from '@/components/user-type-radio-group'
 import { useRouter } from 'next/navigation'
+import dynamic from 'next/dynamic'
 
 interface LoginFormData {
   email: string
@@ -66,4 +67,6 @@ const LoginPage = (): JSX.Element => {
   )
 }
 
-export default LoginPage
+export default dynamic(() => Promise.resolve(LoginPage), {
+  ssr: false,
+})

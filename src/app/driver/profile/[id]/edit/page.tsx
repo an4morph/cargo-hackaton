@@ -3,6 +3,7 @@
 import { BackButton } from '@/components/button/back'
 import { PrimaryButton } from '@/components/button/primary'
 import { BasicInput } from '@/components/input/base'
+import dynamic from 'next/dynamic'
 import { useForm } from 'react-hook-form'
 
 interface IProps {
@@ -115,4 +116,7 @@ const EditDriverPage = ({ params: { id } }: IProps): JSX.Element => {
   )
 }
 
-export default EditDriverPage
+
+export default dynamic(() => Promise.resolve(EditDriverPage), {
+  ssr: false,
+})

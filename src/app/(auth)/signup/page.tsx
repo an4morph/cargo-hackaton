@@ -6,6 +6,7 @@ import { UserTypeRadioGroup } from '@/components/user-type-radio-group'
 import { UserTypes } from '@/types/base.d'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import dynamic from 'next/dynamic'
 
 export interface SignUpFormData {
   email: string
@@ -84,4 +85,6 @@ const SignUpPage = ():JSX.Element => {
   )
 }
 
-export default SignUpPage
+export default dynamic(() => Promise.resolve(SignUpPage), {
+  ssr: false,
+})
