@@ -5,6 +5,7 @@ import { PrimaryButton } from '@/components/button/primary'
 import { useForm } from 'react-hook-form'
 import { UserTypes } from '@/types/base.d'
 import { UserTypeRadioGroup } from '@/components/user-type-radio-group'
+import { useRouter } from 'next/navigation'
 
 interface LoginFormData {
   email: string
@@ -14,10 +15,11 @@ interface LoginFormData {
 
 const LoginPage = (): JSX.Element => {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>()
+  const router = useRouter()
 
   const onSubmit = (data: LoginFormData) => {
     // eslint-disable-next-line
-    console.log(data)
+    router.push(`/${data.userType}/dashboard`)
   }
 
   return (

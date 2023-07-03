@@ -5,6 +5,7 @@ import { BasicInput } from '@/components/input/base'
 import { UserTypeRadioGroup } from '@/components/user-type-radio-group'
 import { UserTypes } from '@/types/base.d'
 import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 
 export interface SignUpFormData {
   email: string
@@ -15,10 +16,11 @@ export interface SignUpFormData {
 
 const SignUpPage = ():JSX.Element => {
   const { register, handleSubmit, formState: { errors }, getValues } = useForm<SignUpFormData>()
+  const router = useRouter()
 
   const onSubmit = (data: SignUpFormData) => {
     // eslint-disable-next-line
-    console.log(data)
+    router.push(`/${data.userType}/dashboard`)
   }
 
   const validatePasswordMatch = (value: string) => {
