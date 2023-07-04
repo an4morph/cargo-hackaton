@@ -1,14 +1,13 @@
 import Link from 'next/link'
 import { HeaderSidebar } from './sidebar'
 import { links } from './links'
+import { Logo } from '@/components/logo'
 
 export const Header = (): JSX.Element => {
   return (
     <div className="bg-white shadow-sm">
       <div className="responsive py-4 flex justify-between items-center">
-        <Link href="/">
-          LOGO
-        </Link>
+        <Logo />
 
         <div>
           <menu className="hidden md:flex">

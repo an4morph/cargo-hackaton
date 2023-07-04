@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { AiFillInstagram, AiFillFacebook, AiFillTwitterCircle } from 'react-icons/ai'
 import { links } from '@/components/header/links'
+import { Logo } from '@/components/logo'
 
 const social = [
   {
@@ -22,9 +23,7 @@ export const Footer = (): JSX.Element => {
     <div className="bg-white shadow-sm py-10">
       <div className="responsive py-4 flex justify-between items-center">
         <div>
-          <Link href="/">
-          LOGO
-          </Link>
+          <Logo />
           <h1 className="text-2xl pt-5"><span className="font-bold">Fast</span> and <span className="font-bold">affordable</span><br />cargo transportation<br />with us.</h1>
         </div>
         <div className="flex flex-col items-start">
