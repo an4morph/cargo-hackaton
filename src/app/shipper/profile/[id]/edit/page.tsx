@@ -4,6 +4,7 @@ import { BackButton } from '@/components/button/back'
 import { PrimaryButton } from '@/components/button/primary'
 import { BasicInput } from '@/components/input/base'
 import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 interface IProps {
@@ -19,8 +20,39 @@ interface ShipperProfileForm {
   about: string
 }
 
+// это мы удалим и сделаем потом норм запрос
+const useMockData = () => {
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState<any | null>(null)
+
+  useEffect(() => {
+    setLoading(true)
+    const id = setTimeout(() => {
+      setData({
+        name: 'Mock name',
+        email: 'Mock email',
+      })
+      setLoading(false)
+    }, 1000)
+
+    return () => {
+      clearTimeout(id)
+    }
+  }, [])
+
+  return { data, loading, error: '' }
+}
+
 const EditShipperPage = ({ params: { id } }: IProps): JSX.Element => {
-  const { register, handleSubmit, formState: { errors } } = useForm<ShipperProfileForm>()
+  const { data, loading, error } = useMockData()
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<ShipperProfileForm>()
+
+  useEffect(() => {
+    if (data) {
+      setValue('name', data.name)
+      setValue('email', data.email)
+    }
+  }, [data, setValue])
 
   const onSubmit = (data: ShipperProfileForm) => {
     // eslint-disable-next-line
@@ -54,55 +86,6 @@ const EditShipperPage = ({ params: { id } }: IProps): JSX.Element => {
             },
           })}
           error={errors.email?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
         />
 
         <PrimaryButton

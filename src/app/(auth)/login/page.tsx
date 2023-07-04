@@ -23,7 +23,7 @@ const LoginPage = (): JSX.Element => {
     setLoading(true)
     try {
       setFormError(null)
-      const { access } = await api.login(data)
+      const { token: { access } } = await api.login(data)
       localStorage.setItem('token', access)
       // todo: доделать с юзером. Надо редиректить в зависимости от роли
       router.push('/shipper/dashboard')
