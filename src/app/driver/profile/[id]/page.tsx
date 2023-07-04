@@ -1,3 +1,4 @@
+'use client'
 // import SwiperDriver from '@/components/swiperDriver'
 import { PrimaryButton } from '@/components/button/primary'
 import Image from 'next/image'
@@ -5,6 +6,9 @@ import { MainInfo } from '@/components/mainInfo'
 import { AboutInfo } from '@/components/aboutInfo'
 import { ContactInfo } from '@/components/contactInfo'
 import { TruckCharacteristic } from '@/components/truckCharacteristic'
+import { InfoModal } from '@/components/modal/info'
+import { useState } from 'react'
+
 
 interface IProps {
   params: {
@@ -13,7 +17,9 @@ interface IProps {
 }
 
 
-export default async function ProfileDriverPage({ params: { id } }: IProps): Promise<JSX.Element> {
+export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Element {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <div className="responsive py-10">
       <div className="flex justify-between">
@@ -34,7 +40,7 @@ export default async function ProfileDriverPage({ params: { id } }: IProps): Pro
               <PrimaryButton className="bg-gray-500 hover:bg-black">Message</PrimaryButton>
               <PrimaryButton className="bg-gray-500 hover:bg-black">Like</PrimaryButton>
               <PrimaryButton className="bg-gray-500 hover:bg-black">Plan</PrimaryButton>
-              <PrimaryButton className="bg-gray-500 hover:bg-black">Truck Info</PrimaryButton>
+              <PrimaryButton onClick={() => setIsOpen(true)} className="bg-gray-500 hover:bg-black">Truck Info</PrimaryButton>
             </div>
           </div>
         </div>
@@ -48,9 +54,9 @@ export default async function ProfileDriverPage({ params: { id } }: IProps): Pro
         <AboutInfo />
         <ContactInfo />
       </div>
-      {/* <div className="responsive">
+      <InfoModal title="" isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <TruckCharacteristic />
-      </div> */}
+      </InfoModal>
       <div />
     </div>
   )

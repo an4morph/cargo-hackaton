@@ -19,7 +19,7 @@ export const Modal = ({ className, overlayClassName, isOpen, onClose, children }
       <div
         className={cx(className,
           'fixed paper z-10 transition-all',
-          'mx-auto max-w-[600px] w-full relative',
+          'mx-auto max-w-[800px] w-full relative',
           {
             'opacity-100 translate-y-0 visible': isOpen,
             'opacity-0 translate-y-5 invisible': !isOpen,

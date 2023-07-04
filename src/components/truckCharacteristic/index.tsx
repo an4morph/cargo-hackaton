@@ -4,8 +4,8 @@ import Image from 'next/image'
 
 export const TruckCharacteristic = () => {
   return (
-    <div className="absolute top-10 left-500">
-      <div className="flex-col justify-evenly w-full bg-white p-10 rounded-xl">
+    <div className="w-full">
+      <div className="flex-col w-full bg-white">
         <h2 className="text-3xl font-bold my-4">Trucks characteristic</h2>
         <div className="flex justify-between mb-10">
           <div>

@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { MainInfo } from '@/components/mainInfo'
@@ -5,6 +7,8 @@ import { AboutInfo } from '@/components/aboutInfo'
 import { ContactInfo } from '@/components/contactInfo'
 import { PrimaryButton } from '@/components/button/primary'
 import { TruckCharacteristic } from '@/components/truckCharacteristic'
+import { InfoModal } from '@/components/modal/info'
+import { useState } from 'react'
 
 
 interface IProps {
@@ -13,7 +17,8 @@ interface IProps {
   }
 }
 
-export default async function ProfileCompanyPage({ params: { id } }: IProps): Promise<JSX.Element> {
+export default function ProfileCompanyPage({ params: { id } }: IProps): JSX.Element {
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <div className="responsive py-10">
       <div className="flex justify-between">
@@ -34,7 +39,10 @@ export default async function ProfileCompanyPage({ params: { id } }: IProps): Pr
               <PrimaryButton className="bg-gray-500 hover:bg-black">Message</PrimaryButton>
               <PrimaryButton className="bg-gray-500 hover:bg-black">Like</PrimaryButton>
               <PrimaryButton className="bg-gray-500 hover:bg-black">Plan</PrimaryButton>
-              <PrimaryButton className="bg-gray-500 hover:bg-black">Truck Info</PrimaryButton>
+              <PrimaryButton
+                onClick={() => setIsOpen(!isOpen)}
+                className="bg-gray-500 hover:bg-black"
+              >Truck Info</PrimaryButton>
             </div>
           </div>
         </div>
@@ -48,10 +56,10 @@ export default async function ProfileCompanyPage({ params: { id } }: IProps): Pr
         <AboutInfo />
         <ContactInfo />
       </div>
-      {/* <div className="responsive">
-        <TruckCharacteristic />
-      </div> */}
       <div />
+      <InfoModal title="" isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <TruckCharacteristic />
+      </InfoModal>
     </div>
   )
 }
