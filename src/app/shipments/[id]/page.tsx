@@ -1,5 +1,6 @@
 import { BackButton } from '@/components/button/back'
 import { PrimaryButton } from '@/components/button/primary'
+import { SecondaryButton } from '@/components/button/secondary'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -68,6 +69,9 @@ export default async function ShimpmentPage({ params: { id } }: IProps): Promise
           <p>Lorem, ipsum dolor sit amet Magni voluptate quod vel! Provident, molestias ipsa?</p>
           <Link className="mt-4 block" href="/profile/driver/1">
             <PrimaryButton className="w-full">More Info</PrimaryButton>
+          </Link>
+          <Link className="mt-4 block" href="/chat/1">
+            <SecondaryButton className="w-full">Message</SecondaryButton>
           </Link>
         </div>
       </div>
