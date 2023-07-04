@@ -67,6 +67,4 @@ const LoginPage = (): JSX.Element => {
   )
 }
 
-export default dynamic(() => Promise.resolve(LoginPage), {
-  ssr: false,
-})
+export default LoginPage
