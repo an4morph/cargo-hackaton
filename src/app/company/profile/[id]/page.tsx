@@ -6,7 +6,7 @@ import { MainInfo } from '@/components/mainInfo'
 import { AboutInfo } from '@/components/aboutInfo'
 import { ContactInfo } from '@/components/contactInfo'
 import { PrimaryButton } from '@/components/button/primary'
-import { TruckCharacteristic } from '@/components/truckCharacteristic'
+import { TruckCharacteristic } from '@/components/truckChara'
 import { InfoModal } from '@/components/modal/info'
 import { useState } from 'react'
 
