@@ -7,18 +7,21 @@ interface IProps {
   children: ReactNode
   onClick?: BtnClickEvent
   type?: 'button' | 'submit'
+  disabled?: boolean
 }
 
-export const PrimaryButton = ({ className, children, onClick, type = 'button' }: IProps): JSX.Element => {
+export const PrimaryButton = ({ className, children, onClick, type = 'button', disabled }: IProps): JSX.Element => {
   return (
     <button
       onClick={onClick}
       type={type}
       className={cx(className,
-        'bg-black py-3 px-8 text-white rounded-md',
-        'hover:shadow-2xl transition-all duration-300',
-        'active:scale-95'
+        ' py-3 px-8  rounded-md bg-black text-white',
+        ' transition-all duration-300',
+        { 'hover:shadow-2xl active:scale-95': !disabled },
+        { 'cursor-not-allowed': disabled }
       )}
+      disabled={disabled}
     >
       {children}
     </button>
