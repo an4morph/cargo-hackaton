@@ -3,24 +3,37 @@
 import { BasicInput } from '@/components/input/base'
 import { PrimaryButton } from '@/components/button/primary'
 import { useForm } from 'react-hook-form'
-import { UserTypes } from '@/types/base.d'
 import { useRouter } from 'next/navigation'
 import * as api from '@/helpers/api'
+import { ErrorText } from '@/components/error'
+import { useState } from 'react'
 
 interface LoginFormData {
   email: string
   password: string
-  userType: UserTypes
 }
 
 const LoginPage = (): JSX.Element => {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>()
+  const [formError, setFormError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const onSubmit = async(data: LoginFormData) => {
-    const token = await api.login(data)
-    console.log(token)
-    //router.push(`/${data.userType}/dashboard`)
+    setLoading(true)
+    try {
+      setFormError(null)
+      const { access } = await api.login(data)
+      localStorage.setItem('token', access)
+      // todo: доделать с юзером. Надо редиректить в зависимости от роли
+      router.push('/shipper/dashboard')
+    }
+    catch (err: any) {
+      setFormError(err?.message)
+    }
+    finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -52,9 +65,12 @@ const LoginPage = (): JSX.Element => {
         <PrimaryButton
           className="mt-4 w-full"
           onClick={handleSubmit(onSubmit)}
+          disabled={loading}
         >
           Log in
         </PrimaryButton>
+
+        {formError && <ErrorText className="text-center mt-4 text-base">{formError}</ErrorText>}
       </form>
     </div>
   )
