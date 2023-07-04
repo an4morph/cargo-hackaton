@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { MainInfo } from '@/components/mainInfo'
 import { AboutInfo } from '@/components/aboutInfo'
 import { ContactInfo } from '@/components/contactInfo'
@@ -9,6 +8,7 @@ import { PrimaryButton } from '@/components/button/primary'
 import { TruckCharacteristic } from '@/components/truckCharacteristic'
 import { InfoModal } from '@/components/modal/info'
 import { useState } from 'react'
+import { useGetCompany } from '@/helpers/hooks/useGetCompany'
 
 
 interface IProps {
@@ -19,6 +19,10 @@ interface IProps {
 
 export default function ProfileCompanyPage({ params: { id } }: IProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
+  const { data, loading, error } = useGetCompany(id)
+
+  console.log({ data, loading, error })
+
   return (
     <div className="responsive py-10">
       <div className="flex justify-between">

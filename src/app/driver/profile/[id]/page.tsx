@@ -1,5 +1,5 @@
 'use client'
-// import SwiperDriver from '@/components/swiperDriver'
+
 import { PrimaryButton } from '@/components/button/primary'
 import Image from 'next/image'
 import { MainInfo } from '@/components/mainInfo'
@@ -8,6 +8,7 @@ import { ContactInfo } from '@/components/contactInfo'
 import { TruckCharacteristic } from '@/components/truckCharacteristic'
 import { InfoModal } from '@/components/modal/info'
 import { useState } from 'react'
+import { useGetDriver } from '@/helpers/hooks/useGetDriver'
 
 
 interface IProps {
@@ -19,6 +20,10 @@ interface IProps {
 
 export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
+
+  const { data, loading, error } = useGetDriver(id)
+
+  console.log({ data, loading, error })
 
   return (
     <div className="responsive py-10">
