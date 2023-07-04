@@ -5,8 +5,6 @@ import { IconButton } from '../button/icon'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { Sidebar } from '../sidebar'
 import Link from 'next/link'
-import { links } from './links'
-
 
 interface IProps {
   className?: string
@@ -39,18 +37,15 @@ export const HeaderSidebar = ({ className }: IProps): JSX.Element => {
         </div>
 
         <menu className="flex flex-col mt-4">
-          {
-            links.map(({ id, text, href }) => (
-              <li key={id} onClick={onClose} className="w-full">
-                <Link
-                  className="hover:bg-slate-100 p-4 border-b-[1px] flex cursor-pointer w-full"
-                  href={href}
-                >
-                  {text}
-                </Link>
-              </li>
-            ))
-          }
+          <li className="hover:text-gray-500 ml-10">
+            <Link href="/news">News</Link>
+          </li>
+          <li className="hover:text-gray-500 ml-10">
+            <Link href="/about">About us</Link>
+          </li>
+          <li className="hover:text-gray-500 ml-10">
+            <Link href="/login">Log in</Link>
+          </li>
         </menu>
       </Sidebar>
     </div>
