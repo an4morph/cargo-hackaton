@@ -6,14 +6,15 @@ import { Logo } from '@/components/logo'
 import { BiLogOut } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
 import { IconButton } from '../button/icon'
+import { ForwardedRef, forwardRef } from 'react'
 
-export const Header = (): JSX.Element => {
+export const Header = forwardRef((props, ref): JSX.Element => {
   const isLogged = false
   const handleLogOut = () => {
     localStorage.removeItem('token')
   }
   return (
-    <div className="bg-white shadow-sm">
+    <header className="bg-white shadow-sm" ref={ref as ForwardedRef<HTMLElement>}>
       <div className="responsive py-4 flex justify-between items-center">
         <Logo />
 
@@ -54,6 +55,6 @@ export const Header = (): JSX.Element => {
           <HeaderSidebar />
         </div>
       </div>
-    </div>
+    </header>
   )
-}
+})

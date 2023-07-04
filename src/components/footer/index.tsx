@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { AiFillInstagram, AiFillFacebook, AiFillTwitterCircle } from 'react-icons/ai'
 import { Logo } from '@/components/logo'
+import { ForwardedRef, forwardRef } from 'react'
 
 const social = [
   {
@@ -17,9 +18,9 @@ const social = [
   },
 ]
 
-export const Footer = (): JSX.Element => {
+export const Footer = forwardRef((props, ref): JSX.Element => {
   return (
-    <div className="bg-white shadow-sm py-10">
+    <footer className="bg-white shadow-sm py-10" ref={ref as ForwardedRef<HTMLElement>}>
       <div className="responsive py-4 flex justify-between items-center">
         <div>
           <Logo />
@@ -55,6 +56,6 @@ export const Footer = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   )
-}
+})
