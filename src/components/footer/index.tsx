@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { AiFillInstagram, AiFillFacebook, AiFillTwitterCircle } from 'react-icons/ai'
-import { links } from '@/components/header/links'
+import { Logo } from '@/components/logo'
+import { ForwardedRef, forwardRef } from 'react'
 
 const social = [
   {
@@ -17,28 +18,27 @@ const social = [
   },
 ]
 
-export const Footer = (): JSX.Element => {
+export const Footer = forwardRef((props, ref): JSX.Element => {
   return (
-    <div className="bg-white shadow-sm py-10">
+    <footer className="bg-white shadow-sm py-10" ref={ref as ForwardedRef<HTMLElement>}>
       <div className="responsive py-4 flex justify-between items-center">
         <div>
-          <Link href="/">
-          LOGO
-          </Link>
+          <Logo />
           <h1 className="text-2xl pt-5"><span className="font-bold">Fast</span> and <span className="font-bold">affordable</span><br />cargo transportation<br />with us.</h1>
         </div>
         <div className="flex flex-col items-start">
           <h3 className="text-1xl font-black justify-start">Pages</h3>
           <menu className="flex flex-col mt-5 text-start">
-            {
-              links.map(({ id, text, href }) => (
-                <li key={id} className="hover:text-gray-500 text-start">
-                  <Link href={href}>{text}</Link>
-                </li>
-              ))
-            }
+            <li className="hover:text-gray-500 ml-10">
+              <Link href="/news">News</Link>
+            </li>
+            <li className="hover:text-gray-500 ml-10">
+              <Link href="/about">About us</Link>
+            </li>
+            <li className="hover:text-gray-500 ml-10">
+              <Link href="/login">Log in</Link>
+            </li>
           </menu>
-          {/* <HeaderSidebar /> */}
         </div>
         <div className="flex-col ">
           <h3 className="text-1xl font-black">Messengers</h3>
@@ -56,6 +56,6 @@ export const Footer = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   )
-}
+})

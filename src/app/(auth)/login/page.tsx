@@ -4,8 +4,8 @@ import { BasicInput } from '@/components/input/base'
 import { PrimaryButton } from '@/components/button/primary'
 import { useForm } from 'react-hook-form'
 import { UserTypes } from '@/types/base.d'
-import { UserTypeRadioGroup } from '@/components/user-type-radio-group'
 import { useRouter } from 'next/navigation'
+import * as api from '@/helpers/api'
 
 interface LoginFormData {
   email: string
@@ -17,21 +17,15 @@ const LoginPage = (): JSX.Element => {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>()
   const router = useRouter()
 
-  const onSubmit = (data: LoginFormData) => {
-    // eslint-disable-next-line
-    router.push(`/${data.userType}/dashboard`)
+  const onSubmit = async(data: LoginFormData) => {
+    const token = await api.login(data)
+    console.log(token)
+    //router.push(`/${data.userType}/dashboard`)
   }
 
   return (
     <div className="flex justify-center items-center mt-10">
       <form className="paper p-4 w-full lg:w-1/2 2xl:w-1/3">
-        <UserTypeRadioGroup
-          className="mb-6"
-          registerData={register('userType', {
-            required: 'You should choose one of the type',
-          })}
-          error={errors.userType?.message}
-        />
         <BasicInput
           id="email"
           label="Email"
