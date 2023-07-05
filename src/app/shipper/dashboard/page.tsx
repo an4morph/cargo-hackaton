@@ -1,30 +1,57 @@
 'use client'
 import { PrimaryButton } from '@/components/button/primary'
 import { ProfileReminder } from '@/components/profile-reminder/page'
-import { UserTypes } from '@/types/base.d'
+import { ShipmentStatuses, UserTypes } from '@/types/base.d'
 import notificatons from '@/store/notifications'
 import Link from 'next/link'
 import { observer } from 'mobx-react-lite'
 import { ShipmentItem } from '@/components/shipment-item'
 import { mockShipments } from './mockData'
+import { RadioGroup } from '@/components/input/radio-group'
+import { useState } from 'react'
 
 
 const ShipperDashboardPage = observer((): JSX.Element => {
+  const [filterValue, setFilterValue] = useState<ShipmentStatuses | 'all'>('all')
+
+  const onChange = (value: ShipmentStatuses | 'all') => {
+    setFilterValue(value)
+  }
+
   return (
     <div className="responsive py-10">
-      <h1 className="text-xl mb-4">Мои заявки (shipments)</h1>
-      <Link href="/shipments/new">
-        <PrimaryButton>Новая отправка</PrimaryButton>
-      </Link>
+      <div className="flex justify-between">
+        <h1 className="text-xl mb-4">My shipments ({mockShipments.length})</h1>
+        <Link href="/shipments/new">
+          <PrimaryButton>New shipment</PrimaryButton>
+        </Link>
+      </div>
+
       <div className="flex mt-5">
         <div className="paper w-1/5 p-6 h-fit">
-          фильтрация
+          <h2 className="mb-4 font-medium">Filter by status</h2>
+
+          <RadioGroup
+            name="filter"
+            options={[
+              { value: 'all', text: 'All' },
+              { value: ShipmentStatuses.wait, text: ShipmentStatuses.wait },
+              { value: ShipmentStatuses.load, text: ShipmentStatuses.load },
+              { value: ShipmentStatuses.delivering, text: ShipmentStatuses.delivering },
+              { value: ShipmentStatuses.done, text: ShipmentStatuses.done },
+            ]}
+            commonValue={filterValue}
+            onChange={onChange}
+          />
         </div>
-        <div className="paper ml-4 w-4/5 p-6">
-          <h3 className="mb-10 text-2xl font-medium">Таблица с отправками</h3>
-          <ul>
-            {
-              mockShipments.map(s => (
+        <ul className="paper ml-4 w-4/5 p-6">
+          {
+            mockShipments
+              .filter(s => {
+                if (filterValue === 'all') return true
+                return s.status === filterValue
+              })
+              .map(s => (
                 <ShipmentItem
                   className="mb-4"
                   driverInfo={s.driverInfo}
@@ -38,9 +65,8 @@ const ShipperDashboardPage = observer((): JSX.Element => {
                   id={s.id}
                   key={s.id}
                 />))
-            }
-          </ul>
-        </div>
+          }
+        </ul>
       </div>
 
       {notificatons.showProfileFillNotice && <ProfileReminder userType={UserTypes.shipper} />}
