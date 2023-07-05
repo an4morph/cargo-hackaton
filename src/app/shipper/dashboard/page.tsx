@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { observer } from 'mobx-react-lite'
 import { ShipmentItem } from '@/components/shipment-item'
 import { mockShipments } from './mockData'
-import { RadioGroup } from '@/components/input/radio-group'
+import { RadioGroup } from '@/components/filter-radio-group'
 import { useState } from 'react'
 
 
