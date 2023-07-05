@@ -18,3 +18,10 @@ export enum UserTypes {
   driver = 'driver',
   company = 'company'
 }
+
+export enum ShipmentStatuses {
+  wait = 'Looking for shipper',
+  load = 'Loading goods',
+  delivering = 'Delivering',
+  done = 'Completed'
+}
