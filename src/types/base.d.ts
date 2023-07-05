@@ -34,13 +34,16 @@ export enum CarType {
 }
 
 export interface DriverCarInfo {
-    id: string | number
-    brand: string
-    year_of_manufacture: number
-    car_type: CarType
-    load_opacity: string
-    equipment: string
-    documents: string
-    documents_file:string
-    car_image: string
+  brand:string
+  car_image:string
+  car_type:string
+  documents:string
+  documents_file:null
+  equipment:string
+  height:number
+  id:number
+  length:number
+  load_capacity:string
+  width:number
+  year_of_manufacture:number
 }

@@ -10,6 +10,7 @@ export interface DriverModel {
   billing_address :string
   bio:string
   car:number
+  car_info:DriverCarInfo
   company_driver:boolean
   driver:boolean
   first_name:string
