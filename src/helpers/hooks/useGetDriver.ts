@@ -1,4 +1,4 @@
-import { DriverModel } from '@/types/base.d'
+import { DriverModel } from '@/types/models.d'
 import { useCallback, useEffect, useState } from 'react'
 import { getDriverProfile } from '@/helpers/api'
 

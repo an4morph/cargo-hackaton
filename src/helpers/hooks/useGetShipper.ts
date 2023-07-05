@@ -1,4 +1,4 @@
-import { ShipperModel } from '@/types/base.d'
+import { ShipperModel } from '@/types/models.d'
 import { useCallback, useEffect, useState } from 'react'
 import { getShipperProfile } from '@/helpers/api'
 

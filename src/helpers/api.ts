@@ -1,4 +1,4 @@
-import { CompanyModel, DriverModel, ShipperModel } from '@/types/base.d'
+import { CompanyModel, DriverModel, ShipperModel } from '@/types/models.d'
 
 export const API_URL = 'http://34.89.184.248/api/v1'
 
