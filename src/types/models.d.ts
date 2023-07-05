@@ -1,4 +1,4 @@
-import { ShipmentStatuses } from './base'
+import { CarType, DriverCarInfo, ShipmentStatuses } from './base'
 
 export interface CompanyModel {
   id: string | number
@@ -9,7 +9,7 @@ export interface CompanyModel {
 export interface DriverModel {
   billing_address :string
   bio:string
-  car:object
+  car:DriverCarInfo
   company_driver:boolean
   driver:boolean
   first_name:string

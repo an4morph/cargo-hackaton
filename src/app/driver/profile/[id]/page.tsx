@@ -18,12 +18,16 @@ interface IProps {
 }
 
 
-export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Element {
+export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Element | any {
   const [isOpen, setIsOpen] = useState(false)
 
   const { data, loading, error } = useGetDriver(id)
 
   console.log({ data, loading, error })
+
+  if (!data) {
+    return null
+  }
 
   return (
     <div className="responsive py-10">
@@ -38,7 +42,7 @@ export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Eleme
           />
           <div className="flex-col justify-between">
             <div>
-              <h1 className="text-3xl font-bold"> Duglas Cameron</h1>
+              <h1 className="text-3xl font-bold">{data?.first_name} {data?.last_name}</h1>
               <span className="font-black text-green-800 mb-5">(Driver)</span>
             </div>
             <div className="flex mt-8 gap-x-5 w-full">
@@ -51,7 +55,7 @@ export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Eleme
         </div>
         <div className="flex gap-x-10">
           <h1 className="text-3xl font-bold bg-black text-white p-4 rounded-lg h-16">Company Name</h1>
-          <h1 className="text-3xl font-bold bg-green-800 text-white p-4 rounded-lg h-16">Free</h1>
+          <h1 className="text-3xl font-bold bg-green-800 text-white p-4 rounded-lg h-16">{data?.status}</h1>
         </div>
       </div>
       <div className="flex my-10 justify-evenly gap-x-5">
