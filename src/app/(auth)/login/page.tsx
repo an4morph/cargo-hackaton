@@ -7,26 +7,40 @@ import { useRouter } from 'next/navigation'
 import * as api from '@/helpers/api'
 import { ErrorText } from '@/components/error'
 import { useState } from 'react'
+import { UserTypes } from '@/types/base.d'
+import user from '@/store/user'
+import { observer } from 'mobx-react-lite'
 
 interface LoginFormData {
   email: string
   password: string
 }
 
-const LoginPage = (): JSX.Element => {
+const LoginPage = observer((): JSX.Element => {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>()
   const [formError, setFormError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const onSubmit = async(data: LoginFormData) => {
+  const onSubmit = async(form: LoginFormData) => {
     setLoading(true)
     try {
       setFormError(null)
-      const { access } = await api.login(data)
-      localStorage.setItem('token', access)
-      // todo: доделать с юзером. Надо редиректить в зависимости от роли
-      router.push('/shipper/dashboard')
+      const { id, role } = await api.login(form)
+      user.setRole(role)
+      if (role === UserTypes.company) {
+        const data = await api.getCompanyProfile(id)
+        user.setUser(data)
+      }
+      if (role === UserTypes.driver) {
+        const data = await api.getDriverProfile(id)
+        user.setUser(data)
+      }
+      if (role === UserTypes.shipper) {
+        const data = await api.getShipperProfile(id)
+        user.setUser(data)
+      }
+      router.push(`/${role}/dashboard`)
     }
     catch (err: any) {
       setFormError(err?.message)
@@ -74,6 +88,6 @@ const LoginPage = (): JSX.Element => {
       </form>
     </div>
   )
-}
+})
 
 export default LoginPage

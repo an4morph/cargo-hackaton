@@ -1,17 +1,17 @@
-import { DriverModel } from '@/types/models.d'
+import { ShipperModel } from '@/types/models.d'
 import { useCallback, useEffect, useState } from 'react'
-import { getDriverProfile } from '@/helpers/api'
+import { getShipperProfile } from '@/helpers/api'
 
-export const useGetDriver = (id: number | string) => {
+export const useGetShipper = (id: number | string) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>('')
-  const [data, setData] = useState<DriverModel | null>(null)
+  const [data, setData] = useState<ShipperModel | null>(null)
 
-  const getDriver = useCallback(async() => {
+  const getShipper = useCallback(async() => {
     setLoading(true)
     try {
       setError('')
-      const response = await getDriverProfile(id)
+      const response = await getShipperProfile(id)
       setData(response)
     }
     catch (err: any) {
@@ -23,8 +23,8 @@ export const useGetDriver = (id: number | string) => {
   }, [id])
 
   useEffect(() => {
-    getDriver()
-  }, [getDriver])
+    getShipper()
+  }, [getShipper])
 
   return { data, loading, error }
 }

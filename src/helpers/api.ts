@@ -1,4 +1,5 @@
-import { CompanyModel, DriverModel, ShipperModel } from '@/types/base.d'
+import { UserTypes } from '@/types/base'
+import { CompanyModel, DriverModel, ShipperModel } from '@/types/models.d'
 
 export const API_URL = 'http://34.89.184.248/api/v1'
 
@@ -10,6 +11,13 @@ const simpleGet = (route: string) => fetch(url(route))
     return res.json()
   })
 
+type LoginResponse = {
+  token: {
+    access: string
+    refresh: string
+  },
+  profile: [number, UserTypes]
+}
 export const login = (body: { email: string, password: string }) => fetch(url('/account/login/'), {
   method: 'POST',
   body: JSON.stringify(body),
@@ -19,6 +27,14 @@ export const login = (body: { email: string, password: string }) => fetch(url('/
 }).then((res) => {
   if (!res.ok) throw new Error('Login fetch error')
   return res.json()
+}).then(({ token, profile }: LoginResponse) => {
+  localStorage.setItem('token', token.access)
+  localStorage.setItem('userId', profile[0].toString())
+  localStorage.setItem('userRole', profile[1].toString())
+  return {
+    id: profile[0],
+    role: profile[1],
+  }
 })
 
 const secureGet = (route: string) => fetch(url(route), {
