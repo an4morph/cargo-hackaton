@@ -1,3 +1,5 @@
+import { ShipmentStatuses } from './base'
+
 export interface CompanyModel {
   id: string | number
   name: string
@@ -5,10 +7,20 @@ export interface CompanyModel {
 }
 
 export interface DriverModel {
-  id: string | number
-  first_name: string
-  last_name: string
-  image: string
+  billing_address :string
+  bio:string
+  car:object
+  company_driver:boolean
+  driver:boolean
+  first_name:string
+  id:string | number
+  image:string
+  last_name:string
+  mc_dot_number:string
+  phone:string
+  shipper:boolean
+  user:string
+  username:string
 }
 
 export interface ShipperModel {
@@ -31,7 +43,7 @@ export interface JobModel {
   required_equipment:string
   special_instruction:string
   driver_id:string | number
-  status: string
+  status: ShipmentStatuses
   activation_code:string
   complete_code: string
   cancel_code:string
