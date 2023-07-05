@@ -58,7 +58,7 @@ export default function ProfileCompanyPage({ params: { id } }: IProps): JSX.Elem
       <div className="flex my-10 justify-evenly gap-x-5">
         <MainInfo />
         <AboutInfo />
-        <ContactInfo />
+        {/* <ContactInfo /> */}
       </div>
       <div />
       <InfoModal title="" isOpen={isOpen} onClose={() => setIsOpen(false)}>

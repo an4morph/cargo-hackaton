@@ -34,15 +34,15 @@ export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Eleme
       <div className="flex justify-between">
         <div className="flex w-2/3 gap-x-6">
           <Image
-            width="200"
-            height="200"
+            width="150"
+            height="150"
             className="object-cover"
             alt="driver avatar"
-            src="/home/driver.jpg"
+            src={data.image || '/home/avatarMask.png'}
           />
           <div className="flex-col justify-between">
             <div>
-              <h1 className="text-3xl font-bold">{data?.first_name} {data?.last_name}</h1>
+              <h1 className="text-3xl font-bold">{data.first_name} {data.last_name}</h1>
               <span className="font-black text-green-800 mb-5">(Driver)</span>
             </div>
             <div className="flex mt-8 gap-x-5 w-full">
@@ -54,17 +54,19 @@ export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Eleme
           </div>
         </div>
         <div className="flex gap-x-10">
-          <h1 className="text-3xl font-bold bg-black text-white p-4 rounded-lg h-16">Company Name</h1>
-          <h1 className="text-3xl font-bold bg-green-800 text-white p-4 rounded-lg h-16">{data?.status}</h1>
+          {
+            data?.company_name ? <h1 className="text-3xl font-bold bg-black text-white p-4 rounded-lg h-16">{}</h1> : <></>
+          }
+          <h1 className="text-3xl font-bold bg-green-800 text-white p-4 rounded-lg h-16">{data.status}</h1>
         </div>
       </div>
       <div className="flex my-10 justify-evenly gap-x-5">
-        <MainInfo />
-        <AboutInfo />
-        <ContactInfo />
+        <MainInfo data={data} />
+        <AboutInfo data={data.bio} />
+        {/* <ContactInfo /> */}
       </div>
       <InfoModal title="" isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <TruckCharacteristic />
+        <TruckCharacteristic data={data} />
       </InfoModal>
       <div />
     </div>

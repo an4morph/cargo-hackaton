@@ -47,7 +47,7 @@ export default async function ProfileShipperPage({ params: { id } }: IProps): Pr
       <div className="flex my-10 justify-evenly gap-x-5">
         <MainInfo />
         <AboutInfo />
-        <ContactInfo />
+        {/* <ContactInfo /> */}
       </div>
       <div />
     </div>

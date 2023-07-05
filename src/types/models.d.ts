@@ -9,18 +9,19 @@ export interface CompanyModel {
 export interface DriverModel {
   billing_address :string
   bio:string
-  car:DriverCarInfo
+  car:number
   company_driver:boolean
   driver:boolean
   first_name:string
   id:string | number
-  image:string
-  last_name:string
+  image?: string
+  last_name?:string
   mc_dot_number:string
   phone:string
   shipper:boolean
   user:string
   username:string
+  status: string
 }
 
 export interface ShipperModel {
