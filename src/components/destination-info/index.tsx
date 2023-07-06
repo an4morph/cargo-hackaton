@@ -16,7 +16,7 @@ export const DestinationInfo = ({ className, address, date }: IProps): JSX.Eleme
     )}
     >
       <address
-        className="not-italic text-sm text-ellipsis overflow-hidden"
+        className="not-italic text-sm text-ellipsis overflow-hidden whitespace-nowrap"
         style={{
           width: '-webkit-fill-available',
         }}
