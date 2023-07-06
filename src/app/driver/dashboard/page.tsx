@@ -1,13 +1,12 @@
 'use client'
 
-import { observer } from 'mobx-react-lite'
 import { ActiveShipmentsList } from './list'
 import { DriverJobs } from './jobs'
 import { useGetJobs } from '@/helpers/hooks/useGetJobs'
 import { useGetJobsHistory } from '@/helpers/hooks/useGetJobsHistory'
 import { ErrorText } from '@/components/error'
 
-const DriverDashboardPage = observer((): JSX.Element | null => {
+const DriverDashboardPage = (): JSX.Element | null => {
   const jobs = useGetJobs()
   const history = useGetJobsHistory()
 
@@ -26,6 +25,6 @@ const DriverDashboardPage = observer((): JSX.Element | null => {
       {history.data && <ActiveShipmentsList list={history.data || []} />}
     </div>
   )
-})
+}
 
 export default DriverDashboardPage
