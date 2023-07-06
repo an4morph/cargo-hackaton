@@ -15,19 +15,20 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
   return (
     <>
       <h1 className="text-2xl font-bold mb-4">Order №{data.id}</h1>
+      <h2 className="text-1xl font-bold mb-4 text-slate-400">{data.title}</h2>
       <div>
-        <div className="flex">
-          <div>
-            <div>
+        <div>
+          <div className="flex gap-x-10">
+            <div className="w-1/2">
               <Image
-                width="150"
-                height="150"
-                className="object-cover"
+                width="400"
+                height="400"
+                className="object-cover w-full"
                 alt="driver avatar"
                 src="/shipment-map.png"
               />
             </div>
-            <div>
+            <div className="w-1/2 paper p-8">
               <div className="mb-2">
                 <span className="font-bold">Status:</span>
               &nbsp;{data?.status}
@@ -42,7 +43,31 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
                 <span className="font-bold">To:</span>
               &nbsp;{data.destination_location}
               </div>
-              <p className="mb-6">
+              <div className="mb-4">
+                <span className="font-bold">Pickup Date:</span>
+              &nbsp;{data.pickup_date}
+              </div>
+              <div className="mb-4">
+                <span className="font-bold">Pickup Location:</span>
+              &nbsp;{data.pickup_location}
+              </div>
+              <div className="mb-4">
+                <span className="font-bold">Type Of Goods:</span>
+              &nbsp;{data.type_of_goods}
+              </div>
+              <div className="mb-4">
+                <span className="font-bold">Weight Of Goods:</span>
+              &nbsp;{data.weight_of_goods}
+              </div>
+              <div className="mb-4">
+                <span className="font-bold">Special Instruction:</span>
+              &nbsp;{data.special_instruction}
+              </div>
+              <div className="mb-4">
+                <span className="font-bold">Required Equipment:</span>
+              &nbsp;{data.required_equipment}
+              </div>
+              {/* <p className="mb-6">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laborum maxime incidunt
               doloribus natus, dolores aliquam commodi ex suscipit sed molestias distinctio quaerat repudiandae
               reiciendis saepe quidem rem harum deleniti facilis voluptates facere. Eaque eveniet quo quos eligendi
@@ -56,22 +81,22 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus esse quos quasi, ullam ipsam nobis
               et, reprehenderit quibusdam ea ex illo corporis labore magnam repellat nulla! Quis in iure, recusandae
               iste possimus consequatur quasi est inventore necessitatibus quod aliquid deserunt.
-              </p>
+              </p> */}
             </div>
-          </div>
+            <div className="w-1/5 min-w-[20%] paper p-8 self-start">
 
-          <div className="w-1/5 min-w-[20%] paper p-4 ml-6 self-start">
-            <h2 className="text-lg font-bold mb-4">Driver info</h2>
-            {
-              data.driver_id
-                ? (
-                  <Link href={`/driver/profile/${data.driver_id}`}>
-                    <PrimaryButton>Show driver profile</PrimaryButton>
-                  </Link>
-                ) : (
-                  <p className="text-slate-500">No driver found for this order yet</p>
-                )
-            }
+              <h2 className="text-lg font-bold mb-4">Driver info</h2>
+              {
+                data.driver_id
+                  ? (
+                    <Link href={`/driver/profile/${data.driver_id}`}>
+                      <PrimaryButton>Show driver profile</PrimaryButton>
+                    </Link>
+                  ) : (
+                    <p className="text-slate-500">No driver found for this order yet</p>
+                  )
+              }
+            </div>
           </div>
         </div>
       </div>
