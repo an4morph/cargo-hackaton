@@ -10,7 +10,7 @@ export const TruckType = ({ src, text }: any): any => {
         width="150"
         height="150"
         className="object-cover"
-        alt="company avatar"
+        alt={text}
         src={src}
       />
     </div>

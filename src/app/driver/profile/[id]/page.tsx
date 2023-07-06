@@ -2,8 +2,8 @@
 
 import { PrimaryButton } from '@/components/button/primary'
 import Image from 'next/image'
-import { MainInfo } from '@/components/mainInfo'
-import { AboutInfo } from '@/components/aboutInfo'
+import { MainDriverInfo } from '@/components/mainDriverInfo'
+import { AboutDriverInfo } from '@/components/aboutDriverInfo'
 import { ContactInfo } from '@/components/contactInfo'
 import { TruckCharacteristic } from '@/components/truckChara'
 import { InfoModal } from '@/components/modal/info'
@@ -47,8 +47,8 @@ export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Eleme
             </div>
             <div className="flex mt-8 gap-x-5 w-full">
               <PrimaryButton className="bg-gray-500 hover:bg-black">Message</PrimaryButton>
-              <PrimaryButton className="bg-gray-500 hover:bg-black">Like</PrimaryButton>
-              <PrimaryButton className="bg-gray-500 hover:bg-black">Plan</PrimaryButton>
+              {/* <PrimaryButton className="bg-gray-500 hover:bg-black">Like</PrimaryButton>
+              <PrimaryButton className="bg-gray-500 hover:bg-black">Plan</PrimaryButton> */}
               <PrimaryButton onClick={() => setIsOpen(true)} className="bg-gray-500 hover:bg-black">Truck Info</PrimaryButton>
             </div>
           </div>
@@ -61,12 +61,12 @@ export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Eleme
         </div>
       </div>
       <div className="flex my-10 justify-evenly gap-x-5">
-        <MainInfo data={data} />
-        <AboutInfo data={data.bio} />
+        <MainDriverInfo data={data} />
+        <AboutDriverInfo data={data.bio} />
         {/* <ContactInfo /> */}
       </div>
       <InfoModal title="" isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <TruckCharacteristic data={data} />
+        <TruckCharacteristic car_info={data.car_info} />
       </InfoModal>
       <div />
     </div>

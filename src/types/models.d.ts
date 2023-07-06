@@ -12,6 +12,7 @@ export interface DriverModel {
   car:number
   car_info:DriverCarInfo
   company_driver:boolean
+  company_name:string
   driver:boolean
   first_name:string
   id:string | number

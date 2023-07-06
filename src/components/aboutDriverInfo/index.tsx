@@ -4,7 +4,7 @@ interface IProps {
   data: string
 }
 
-export const AboutInfo = ({ data }: IProps): JSX.Element => {
+export const AboutDriverInfo = ({ data }: IProps): JSX.Element => {
   const driverInform = 'there should be information about the driver here'
   return (
     <div className="flex-col w-1/2 items-center bg-white p-10 rounded-xl">

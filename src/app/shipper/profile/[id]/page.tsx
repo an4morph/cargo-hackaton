@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { PrimaryButton } from '@/components/button/primary'
-import { MainInfo } from '@/components/mainInfo'
-import { AboutInfo } from '@/components/aboutInfo'
-import { ContactInfo } from '@/components/contactInfo'
+import { MainShipperInfo } from '@/components/mainShipperInfo'
+import { AboutShipperInfo } from '@/components/aboutShipperInfo'
+// import { ContactInfo } from '@/components/contactInfo'
 
 
 interface IProps {
@@ -40,13 +40,13 @@ export default async function ProfileShipperPage({ params: { id } }: IProps): Pr
         </div>
         <div className="flex gap-x-10">
           {/* <h1 className="text-3xl font-bold bg-black text-white p-4 rounded-lg h-16">Company Name</h1> */}
-          <h1 className="text-3xl font-bold bg-green-800 text-white p-4 rounded-lg h-16">{data.status}</h1>
+          {/* <h1 className="text-3xl font-bold bg-green-800 text-white p-4 rounded-lg h-16">{data.status}</h1> */}
         </div>
       </div>
       {/* <p>{id}</p> */}
       <div className="flex my-10 justify-evenly gap-x-5">
-        <MainInfo data={data}/>
-        <AboutInfo data={data}/>
+        {/* <MainShipperInfo data={data} />
+        <AboutShipperInfo data={data} /> */}
         {/* <ContactInfo /> */}
       </div>
       <div />

@@ -4,13 +4,13 @@ import { TruckType } from './truck-type'
 import { CarType } from '@/types/base.d'
 
 interface IProps {
- data: any
+ car_info: any
 }
 
 
-export const TruckCharacteristic = ({ data }: IProps): JSX.Element | null => {
+export const TruckCharacteristic = ({ car_info }: IProps): JSX.Element | null => {
   const truck = useMemo(() => {
-    switch (data.car_type) {
+    switch (car_info.car_type) {
       case [CarType.Container]: return {
         text: 'Container',
         src: '/home/container.jpg',
@@ -29,9 +29,9 @@ export const TruckCharacteristic = ({ data }: IProps): JSX.Element | null => {
       }
       default: return null
     }
-  }, [data])
+  }, [car_info])
 
-  if (!data) {
+  if (!car_info) {
     return null
   }
   return (
@@ -51,34 +51,34 @@ export const TruckCharacteristic = ({ data }: IProps): JSX.Element | null => {
               height="250"
               className="object-cover w-full"
               alt="truck image"
-              src={data.car_image || '/home/truckMask.png'}
+              src={car_info.car_image || '/home/truckMask.png'}
             />
           </div>
           <table className="w-full border-collapse ">
             <tbody>
               <tr className="w-full">
                 <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">Year of release</td>
-                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">{data.year_of_manufacture}</td>
+                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">{car_info.year_of_manufacture}</td>
               </tr>
               <tr>
                 <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full bg-gray-300">Body type</td>
-                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full bg-gray-300">{data.car_type}</td>
+                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full bg-gray-300">{car_info.car_type}</td>
               </tr>
               <tr>
                 <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">Length,</td>
-                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">{data.length} inch</td>
+                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">{car_info.length} inch</td>
               </tr>
               <tr>
                 <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full bg-gray-300">Width,</td>
-                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full bg-gray-300">{data.width} inch</td>
+                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full bg-gray-300">{car_info.width} inch</td>
               </tr>
               <tr>
                 <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">Height,</td>
-                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">{data.height} inch</td>
+                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">{car_info.height} inch</td>
               </tr>
               <tr>
                 <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">Load Capacity,</td>
-                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">{data.load_capacity}</td>
+                <td className="border-solid border-2 border-gray-400 py-0.5 px-10 w-full">{car_info.load_capacity}</td>
               </tr>
             </tbody>
           </table>
