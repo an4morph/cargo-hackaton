@@ -11,7 +11,7 @@ interface IProps {
 export const DestinationInfo = ({ className, address, date }: IProps): JSX.Element => {
   return (
     <div className={cx(className,
-      'font-medium flex flex-col w-[100px]',
+      'font-medium flex flex-col w-[110px]',
       'bg-slate-100 px-4 py-2 rounded-lg'
     )}
     >
@@ -21,8 +21,8 @@ export const DestinationInfo = ({ className, address, date }: IProps): JSX.Eleme
           width: '-webkit-fill-available',
         }}
       >{address}</address>
-      <time className="text-2xl text-slate-500">{isDateValid(date) ? dateFormat(date, 'ddd d') : '??? ?'}</time>
-      <time>{isDateValid(date) ? dateFormat(date, 'mmm yyyy') : '??? ????'}</time>
+      <time className="text-xl text-slate-400 whitespace-nowrap">{isDateValid(date) ? dateFormat(date, 'ddd d') : '??? ?'}</time>
+      <time className="whitespace-nowrap">{isDateValid(date) ? dateFormat(date, 'mmm yyyy') : '??? ????'}</time>
     </div>
   )
 }

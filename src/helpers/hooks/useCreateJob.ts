@@ -6,11 +6,12 @@ export const useCreateJob = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>('')
 
-  const createData = useCallback(async(data: Partial<JobModel>) => {
+  const createData = useCallback(async(data: Partial<JobModel>, cb: () => void) => {
     setLoading(true)
     try {
       setError('')
       await createJob(data)
+      cb()
     }
     catch (err: any) {
       setError(err.message)
