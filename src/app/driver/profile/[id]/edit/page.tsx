@@ -7,6 +7,7 @@ import { editDriverProfile } from '@/helpers/api'
 import { useGetDriver } from '@/helpers/hooks/useGetDriver'
 import { DriverModel } from '@/types/models'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -35,7 +36,12 @@ const EditDriverPage = ({ params: { id } }: IProps): JSX.Element | null => {
   if (!data) return null
   return (
     <div className="py-10 responsive">
-      <BackButton text="Back to dashboard" href="/driver/dashboard" />
+      <div className="flex justify-between">
+        <BackButton text="Back to dashboard" href="/driver/dashboard" />
+        <Link href={`/driver/profile/${id}`}>
+          <PrimaryButton>Show my public accout</PrimaryButton>
+        </Link>
+      </div>
       <h1 className="text-2xl font-bold mt-4 mb-6">Edit my profile</h1>
       <form className="paper p-4 w-full mx-auto">
         <BasicInput
