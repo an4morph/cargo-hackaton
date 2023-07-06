@@ -1,7 +1,6 @@
 'use client'
 import { PrimaryButton } from '@/components/button/primary'
-import { ProfileReminder } from '@/components/profile-reminder/page'
-import { ShipmentStatuses, UserTypes } from '@/types/base.d'
+import { ShipmentStatuses } from '@/types/base.d'
 import Link from 'next/link'
 import { observer } from 'mobx-react-lite'
 import { ShipmentItem } from '@/components/shipment-item'
@@ -73,8 +72,6 @@ const ShipperDashboardPage = observer((): JSX.Element | null => {
           }
         </ul>
       </div>
-
-      {Boolean(localStorage.getItem('notify')) && <ProfileReminder />}
     </div>
   )
 })
