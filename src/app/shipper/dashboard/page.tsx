@@ -4,12 +4,21 @@ import Link from 'next/link'
 import { useGetJobs } from '@/helpers/hooks/useGetJobs'
 import ShipperDashboardPageContent from './components/content'
 import { ErrorText } from '@/components/error'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 
 const ShipperDashboardPage = (): JSX.Element | null => {
   const { data, loading, error } = useGetJobs()
+  const router = useRouter()
 
-  return (
+  useEffect(() => {
+    if (localStorage.getItem('userRole') === 'driver') {
+      router.push('/driver/dashboard')
+    }
+  }, [router])
+
+  return localStorage.getItem('userRole') === 'shipper' ? (
     <div className="responsive py-10">
       <div className="flex justify-between">
         <h1 className="text-xl mb-4">My shipments</h1>
@@ -22,7 +31,7 @@ const ShipperDashboardPage = (): JSX.Element | null => {
       {error && <ErrorText>{error}</ErrorText>}
       {data && <ShipperDashboardPageContent data={data.results} />}
     </div>
-  )
+  ) : null
 }
 
 export default ShipperDashboardPage
