@@ -7,9 +7,10 @@ import { editJob } from '@/helpers/api'
 import { useGetJobItem } from '@/helpers/hooks/useGetJobItem'
 import { JobModel } from '@/types/models'
 import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { strDateToISO, strDateToInput } from '@/helpers/date'
+import { useRouter } from 'next/navigation'
 
 interface IProps {
   params: {
@@ -19,6 +20,8 @@ interface IProps {
 
 const EditShipmentPage = ({ params: { id } }: IProps): JSX.Element | null => {
   const { data, loading, error } = useGetJobItem(id)
+  const [editLoading, setEditLoading] = useState(false)
+  const router = useRouter()
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<JobModel>()
 
   useEffect(() => {
@@ -35,7 +38,17 @@ const EditShipmentPage = ({ params: { id } }: IProps): JSX.Element | null => {
       pickup_date: strDateToISO(form.pickup_date),
       delivery_date: strDateToISO(form.delivery_date),
     }
+    setEditLoading(true)
     editJob(id, { ...data, ...editedData })
+      .then(() => {
+        router.push(`/shipments/${id}`)
+      })
+      .catch(() => {
+        alert('Failed while updating')
+      })
+      .finally(() => {
+        setEditLoading(false)
+      })
   }
 
   if (!data) return null
@@ -78,8 +91,12 @@ const EditShipmentPage = ({ params: { id } }: IProps): JSX.Element | null => {
         <PrimaryButton
           className="mt-4 w-full"
           onClick={handleSubmit(onSubmit)}
+          disabled={editLoading}
         >
-          Update Shipment
+          {
+            editLoading ? 'Loading...' : 'Update Shipment'
+          }
+
         </PrimaryButton>
       </form>
     </div>
