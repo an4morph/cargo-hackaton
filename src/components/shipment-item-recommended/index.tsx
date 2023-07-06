@@ -19,11 +19,13 @@ interface IProps {
   driverId?: string | number
   weight?: string | number
   fullObj: Partial<JobModel>
+  owner?: string | number
 }
 
 export const ShipmentItemRecommended = ({
   className,
   status,
+  owner,
   id,
   fromDate,
   toDate,
@@ -67,14 +69,14 @@ export const ShipmentItemRecommended = ({
             <td className="text-slate-500 align-top break-all">{description}</td>
           </tr>
           {
-            driverId && (
+            (owner && localStorage.getItem('userRole') !== 'shipper') && (
               <tr>
-                <td className="font-bold align-top pr-4">Driver Info</td>
+                <td className="font-bold align-top pr-4">Shipper Info</td>
                 <td className="text-slate-500 align-top">
                   <Link
                     className="underline text-sky-700 hover:text-sky-500"
-                    href={`/driver/profile/${driverId}`}
-                  >Show driver info</Link>
+                    href={`/shipper/profile/${owner}`}
+                  >Show shipper info</Link>
                 </td>
               </tr>
             )

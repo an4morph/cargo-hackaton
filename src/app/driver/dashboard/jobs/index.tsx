@@ -24,6 +24,7 @@ export const DriverJobs = ({ className, list }: IProps): JSX.Element => {
             id={s.id}
             key={s.id}
             fullObj={s}
+            owner={s.owner}
           />))
       }
     </div>

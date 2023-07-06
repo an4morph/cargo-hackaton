@@ -58,6 +58,7 @@ const ShipperDashboardPageContent = ({ data }: { data: JobModel[] }): JSX.Elemen
                 id={s.id}
                 key={s.id}
                 weight={s.weight_of_goods}
+                owner={s.owner}
               />))
         }
       </ul>

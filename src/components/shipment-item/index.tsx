@@ -18,6 +18,7 @@ interface IProps {
   description: string,
   driverId?: string | number
   weight?: string | number
+  owner?: string | number
 }
 
 export const ShipmentItem = ({
@@ -31,6 +32,7 @@ export const ShipmentItem = ({
   description,
   driverId,
   weight,
+  owner,
 }: IProps): JSX.Element => {
   const percent = useMemo(() => {
     if (status === ShipmentStatuses.wait || status === ShipmentStatuses.load) return 0
@@ -66,7 +68,7 @@ export const ShipmentItem = ({
               <td className="text-slate-500 align-top break-all">{description}</td>
             </tr>
             {
-              driverId && (
+              (driverId && localStorage.getItem('userRole') !== 'driver') && (
                 <tr>
                   <td className="font-bold align-top pr-4">Driver Info</td>
                   <td className="text-slate-500 align-top">
@@ -74,6 +76,19 @@ export const ShipmentItem = ({
                       className="underline text-sky-700 hover:text-sky-500"
                       href={`/driver/profile/${driverId}`}
                     >Show driver info</Link>
+                  </td>
+                </tr>
+              )
+            }
+            {
+              (owner && localStorage.getItem('userRole') !== 'shipper') && (
+                <tr>
+                  <td className="font-bold align-top pr-4">Shipper Info</td>
+                  <td className="text-slate-500 align-top">
+                    <Link
+                      className="underline text-sky-700 hover:text-sky-500"
+                      href={`/shipper/profile/${owner}`}
+                    >Show shipper info</Link>
                   </td>
                 </tr>
               )

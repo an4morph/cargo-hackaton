@@ -62,6 +62,7 @@ export const ActiveShipmentsList = observer(({ list }: IProps): JSX.Element => {
                 locationTo={s.destination_location}
                 id={s.id}
                 key={s.id}
+                owner={s.owner}
               />))
         }
       </ul>
