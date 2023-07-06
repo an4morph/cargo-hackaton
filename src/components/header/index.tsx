@@ -7,11 +7,22 @@ import { BiLogOut } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
 import { IconButton } from '../button/icon'
 import { ForwardedRef, forwardRef } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { observer } from 'mobx-react-lite'
 
-export const Header = forwardRef((props, ref): JSX.Element => {
-  const isLogged = false
+export const Header = observer(forwardRef((props, ref): JSX.Element => {
+  const pathname = usePathname()
+
+  const isLogged = !['/login', '/signup', '/'].includes(pathname)
+
+
+  const router = useRouter()
   const handleLogOut = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('userId')
+    localStorage.removeItem('userRole')
+    localStorage.removeItem('notify')
+    router.push('/login')
   }
   return (
     <header className="bg-white shadow-sm" ref={ref as ForwardedRef<HTMLElement>}>
@@ -32,11 +43,11 @@ export const Header = forwardRef((props, ref): JSX.Element => {
                   <>
                     <li className="hover:text-gray-500 ml-10">
                       <Link
-                        href="/shipper/profile/id/edit"
+                        href={`/shipper/profile/${localStorage.getItem('userId')}/edit`}
                         className="border-[1px] border-slate-300 py-1 px-3 rounded-full flex items-center"
                       >
                         <FaUserCircle className="mr-2" />
-                        User name
+                        Profile
                       </Link>
                     </li>
                     <li className="hover:text-gray-500 ml-2">
@@ -57,4 +68,4 @@ export const Header = forwardRef((props, ref): JSX.Element => {
       </div>
     </header>
   )
-})
+}))
