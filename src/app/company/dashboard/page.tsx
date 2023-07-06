@@ -9,7 +9,7 @@ const CompanyDashboardPage = observer((): JSX.Element => {
   return (
     <div className="responsive">
       CompanyDashboardPage
-      {notifications.showProfileFillNotice && <ProfileReminder userType={UserTypes.company} />}
+      {notifications.showProfileFillNotice && <ProfileReminder />}
     </div>
   )
 })

@@ -2,7 +2,6 @@
 import { PrimaryButton } from '@/components/button/primary'
 import { ProfileReminder } from '@/components/profile-reminder/page'
 import { ShipmentStatuses, UserTypes } from '@/types/base.d'
-import notificatons from '@/store/notifications'
 import Link from 'next/link'
 import { observer } from 'mobx-react-lite'
 import { ShipmentItem } from '@/components/shipment-item'
@@ -75,7 +74,7 @@ const ShipperDashboardPage = observer((): JSX.Element | null => {
         </ul>
       </div>
 
-      {notificatons.showProfileFillNotice && <ProfileReminder userType={UserTypes.shipper} />}
+      {Boolean(localStorage.getItem('notify')) && <ProfileReminder />}
     </div>
   )
 })
