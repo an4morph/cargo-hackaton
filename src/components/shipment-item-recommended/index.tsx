@@ -14,7 +14,8 @@ interface IProps {
   locationFrom: string,
   locationTo: string,
   description: string,
-  driverInfo: string
+  driverId?: string | number
+  weight?: string | number
 }
 
 export const ShipmentItemRecommended = ({
@@ -26,7 +27,8 @@ export const ShipmentItemRecommended = ({
   locationFrom,
   locationTo,
   description,
-  driverInfo,
+  driverId,
+  weight,
 }: IProps): JSX.Element => {
   return (
     <div
@@ -46,12 +48,29 @@ export const ShipmentItemRecommended = ({
         <tbody>
           <tr>
             <td className="font-bold align-top pr-4">Description</td>
-            <td className="text-slate-500">{description}</td>
+            <td className="text-slate-500 align-top">{description}</td>
           </tr>
-          <tr>
-            <td className="font-bold align-top pr-4">Driver Info</td>
-            <td className="text-slate-500">{driverInfo}</td>
-          </tr>
+          {
+            driverId && (
+              <tr>
+                <td className="font-bold align-top pr-4">Driver Info</td>
+                <td className="text-slate-500 align-top">
+                  <Link
+                    className="underline text-sky-700 hover:text-sky-500"
+                    href={`/driver/profile/${driverId}`}
+                  >Show driver info</Link>
+                </td>
+              </tr>
+            )
+          }
+          {
+            weight && (
+              <tr>
+                <td className="font-bold align-top pr-4">Weight</td>
+                <td className="text-slate-500 align-top">{weight}</td>
+              </tr>
+            )
+          }
         </tbody>
       </table>
 

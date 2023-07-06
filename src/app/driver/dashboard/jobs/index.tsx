@@ -1,9 +1,10 @@
 import { ShipmentItemRecommended } from '@/components/shipment-item-recommended'
+import { JobModel } from '@/types/models'
 import cx from 'classnames'
 
 interface IProps {
   className?: string
-  list: any[]
+  list: JobModel[]
 }
 
 export const DriverJobs = ({ className, list }: IProps): JSX.Element => {
@@ -13,13 +14,13 @@ export const DriverJobs = ({ className, list }: IProps): JSX.Element => {
         list.map(s => (
           <ShipmentItemRecommended
             className="w-1/2 md:w-1/3 lg:w-1/4 "
-            driverInfo={s.driverInfo}
-            description={s.description}
-            fromDate={s.fromDate}
-            toDate={s.toDate}
+            driverId={s.driver_id}
+            description={s.title}
+            fromDate="12.12.2022"
+            toDate="10.11.2023"
             status={s.status}
-            locationFrom={s.locationFrom}
-            locationTo={s.locationTo}
+            locationFrom={s.pickup_location}
+            locationTo={s.destination_location}
             id={s.id}
             key={s.id}
           />))

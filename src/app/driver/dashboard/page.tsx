@@ -18,7 +18,7 @@ const DriverDashboardPage = observer((): JSX.Element | null => {
   return (
     <div className="responsive py-10">
       <h2 className="text-xl mb-4">New recommended jobs</h2>
-      <DriverJobs list={mockShipments.slice(-4)} />
+      <DriverJobs list={jobs?.data?.results || []} />
 
       <h2 className="text-xl mb-4">My shipments ({mockShipments.length})</h2>
       <ActiveShipmentsList list={mockShipments} />
