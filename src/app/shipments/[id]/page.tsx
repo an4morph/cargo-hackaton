@@ -79,11 +79,9 @@ export default async function ShimpmentPage({ params: { id } }: IProps): Promise
 
       <h2 className="text-xl mb-4 mt-10">Tracking</h2>
       <div className="w-full h-[400px] relative">
-        <Image
-          fill
-          src="/shipment-map.png"
-          alt="map"
-          className="object-cover"
+        <iframe
+          title="result"
+          src="http://34.89.184.248/api/v1/job/map/"
         />
       </div>
     </div>
