@@ -46,7 +46,7 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
         </div>
 
         <div className="w-1/5 min-w-[20%] paper p-4 ml-6 self-start">
-          <h2 className="text-lg font-bold mb-4">Driver block</h2>
+          <h2 className="text-lg font-bold mb-4">Driver info</h2>
           {
             data.driver_id
               ? (
