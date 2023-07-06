@@ -1,5 +1,5 @@
 import { UserTypes } from '@/types/base'
-import { CompanyModel, DriverModel, ShipperModel } from '@/types/models.d'
+import { CompanyModel, DriverModel, JobModel, ShipperModel } from '@/types/models.d'
 
 export const API_URL = 'http://34.89.184.248/api/v1'
 
@@ -48,6 +48,19 @@ const secureGet = (route: string) => fetch(url(route), {
     return res.json()
   })
 
+export const securePost = <T>(route: string, data: T, errorText?: string) => fetch(url(route), {
+  method: 'POST',
+  body: JSON.stringify(data),
+  headers: {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    'Content-Type': 'application/json',
+  },
+})
+  .then((res) => {
+    if (!res.ok) throw new Error(errorText || 'Fetch error')
+    return res.json()
+  })
+
 export const securePut = <T>(route: string, data: T, errorText?: string) => fetch(url(route), {
   method: 'PUT',
   body: JSON.stringify(data),
@@ -68,10 +81,12 @@ export const getShipperProfile = (id: string | number): Promise<ShipperModel> =>
 
 export const editShipperProfile = (id: string | number, data: Partial<ShipperModel>) =>
   securePut<Partial<ShipperModel>>(`/profile/shipper/${id}/`, data)
-export const editDriverProfile = (id: string | number, data: Partial<ShipperModel>) =>
+export const editDriverProfile = (id: string | number, data: Partial<DriverModel>) =>
   securePut<Partial<ShipperModel>>(`/profile/${id}/`, data)
-export const editCompanyProfile = (id: string | number, data: Partial<ShipperModel>) =>
+export const editCompanyProfile = (id: string | number, data: Partial<CompanyModel>) =>
   securePut<Partial<ShipperModel>>(`/profile/company/${id}/`, data)
 
 export const getJobs = () => secureGet('/job/')
 export const getJobsHistory = () => secureGet('/job/history/')
+
+export const createJob = (data: Partial<JobModel>) => securePost('/job', data)
