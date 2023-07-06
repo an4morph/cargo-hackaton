@@ -5,7 +5,7 @@ import { getJobs } from '@/helpers/api'
 export const useGetJobs = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>('')
-  const [data, setData] = useState<JobModel | null>(null)
+  const [data, setData] = useState<{ count: number, results: JobModel[]} | null>(null)
 
   const getJobsFunc = useCallback(async() => {
     setLoading(true)
