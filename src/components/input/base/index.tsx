@@ -1,7 +1,6 @@
 import { ErrorText } from '@/components/error'
 import cx from 'classnames'
 import { ChangeEvent, forwardRef } from 'react'
-import { IoWarning } from 'react-icons/io5'
 
 interface IProps {
   id: string
@@ -11,7 +10,7 @@ interface IProps {
   error?: string
   placeholder?: string
   value?: string
-  type?: 'text' | 'number' | 'password' | 'email'
+  type?: 'text' | 'number' | 'password' | 'email' | 'date'
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 

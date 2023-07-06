@@ -85,6 +85,8 @@ export const editDriverProfile = (id: string | number, data: Partial<DriverModel
   securePut<Partial<ShipperModel>>(`/profile/${id}/`, data)
 export const editCompanyProfile = (id: string | number, data: Partial<CompanyModel>) =>
   securePut<Partial<ShipperModel>>(`/profile/company/${id}/`, data)
+export const editJob = (id: string | number, data: Partial<JobModel>) =>
+  securePut<Partial<JobModel>>(`/job/${id}/`, data)
 
 export const takeJob = (id: string | number, data: Partial<JobModel>) =>
   securePut(`/job/${id}/order/`, data)
