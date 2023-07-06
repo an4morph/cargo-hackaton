@@ -63,7 +63,17 @@ const EditShipmentPage = ({ params: { id } }: IProps): JSX.Element | null => {
           {...register('pickup_date', {
             required: 'Required field',
           })}
-          error={errors.title?.message}
+          error={errors.pickup_date?.message}
+        />
+        <BasicInput
+          id="delivery_date"
+          label="delivery_date"
+          className="pb-4"
+          type="date"
+          {...register('delivery_date', {
+            required: 'Required field',
+          })}
+          error={errors.delivery_date?.message}
         />
         <PrimaryButton
           className="mt-4 w-full"

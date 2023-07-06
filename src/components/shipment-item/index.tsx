@@ -46,7 +46,7 @@ export const ShipmentItem = ({
     >
       <StatusBox status={status} className="mb-4 inline-block" />
       <div className="flex justify-between">
-        <DestinationInfo address={locationFrom} />
+        <DestinationInfo date={fromDate} address={locationFrom} />
         <input
           className="w-3/5 text-white bg-black"
           type="range"
@@ -54,7 +54,7 @@ export const ShipmentItem = ({
           value={percent}
           max="100"
         />
-        <DestinationInfo address={locationTo} />
+        <DestinationInfo date={toDate} address={locationTo} />
       </div>
       <hr className="mt-4" />
 

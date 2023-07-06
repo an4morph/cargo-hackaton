@@ -16,8 +16,8 @@ export const DriverJobs = ({ className, list }: IProps): JSX.Element => {
             className="w-1/2 md:w-1/3 lg:w-1/4 "
             driverId={s.driver_id}
             description={s.title}
-            fromDate="12.12.2022"
-            toDate="10.11.2023"
+            fromDate={s.pickup_date}
+            toDate={s.delivery_date}
             status={s.status}
             locationFrom={s.pickup_location}
             locationTo={s.destination_location}

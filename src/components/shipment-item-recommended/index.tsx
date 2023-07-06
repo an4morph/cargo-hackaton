@@ -54,9 +54,9 @@ export const ShipmentItemRecommended = ({
       )}
     >
       <div className="flex justify-between items-center">
-        <DestinationInfo address={locationFrom} />
+        <DestinationInfo date={fromDate} address={locationFrom} />
         <BsArrowRight className="w-[40px] h-[40px]" />
-        <DestinationInfo address={locationTo} />
+        <DestinationInfo date={toDate} address={locationTo} />
       </div>
       <hr className="mt-4" />
 

@@ -1,11 +1,14 @@
+import { isDateValid } from '@/helpers/date'
 import cx from 'classnames'
+import dateFormat from 'dateformat'
 
 interface IProps {
   className?: string
   address: string
+  date: string
 }
 
-export const DestinationInfo = ({ className, address }: IProps): JSX.Element => {
+export const DestinationInfo = ({ className, address, date }: IProps): JSX.Element => {
   return (
     <div className={cx(className,
       'font-medium flex flex-col w-[100px]',
@@ -18,8 +21,8 @@ export const DestinationInfo = ({ className, address }: IProps): JSX.Element => 
           width: '-webkit-fill-available',
         }}
       >{address}</address>
-      <time className="text-2xl text-slate-500">12:03</time>
-      <time>Sep 12</time>
+      <time className="text-2xl text-slate-500">{isDateValid(date) ? dateFormat(date, 'ddd d') : '??? ?'}</time>
+      <time>{isDateValid(date) ? dateFormat(date, 'mmm yyyy') : '??? ????'}</time>
     </div>
   )
 }

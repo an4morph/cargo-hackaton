@@ -55,8 +55,8 @@ export const ActiveShipmentsList = observer(({ list }: IProps): JSX.Element => {
                 driverId={s.driver_id}
                 description={s.title}
                 wayPercentage={60}
-                fromDate="11.02.2022"
-                toDate="23.04.2024"
+                fromDate={s.pickup_date}
+                toDate={s.delivery_date}
                 status={s.status}
                 locationFrom={s.pickup_location}
                 locationTo={s.destination_location}
