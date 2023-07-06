@@ -31,6 +31,10 @@ export interface ShipperModel {
   first_name: string
   last_name: string
   image: string
+  billing_address: string
+  phone: string
+  user: string
+  username: string
 }
 
 export interface JobModel {

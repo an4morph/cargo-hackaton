@@ -1,9 +1,17 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PrimaryButton } from '@/components/button/primary'
+<<<<<<< HEAD
 import { MainShipperInfo } from '@/components/mainShipperInfo'
 import { AboutShipperInfo } from '@/components/aboutShipperInfo'
 // import { ContactInfo } from '@/components/contactInfo'
+=======
+import { MainInfo } from '@/components/mainInfo'
+import { AboutInfo } from '@/components/aboutInfo'
+import { ContactInfo } from '@/components/contactInfo'
+import { useGetShipper } from '@/helpers/hooks/useGetShipper'
+>>>>>>> main
 
 
 interface IProps {
@@ -12,7 +20,12 @@ interface IProps {
   }
 }
 
-export default async function ProfileShipperPage({ params: { id } }: IProps): Promise<JSX.Element> {
+export default function ProfileShipperPage({ params: { id } }: IProps): JSX.Element | null {
+  const { data, loading, error } = useGetShipper(id)
+
+  console.log({ data, loading, error })
+
+  if (!data) return null
   return (
     <div className="responsive py-10">
       <div className="flex justify-between">
