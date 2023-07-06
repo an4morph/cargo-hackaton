@@ -13,9 +13,9 @@ interface IProps {
   toDate: string,
   locationFrom: string,
   locationTo: string,
-  wayPercentage: number,
+  wayPercentage?: number,
   description: string,
-  driverInfo: string
+  driverId: string | number
 }
 
 export const ShipmentItem = ({
@@ -26,9 +26,9 @@ export const ShipmentItem = ({
   toDate,
   locationFrom,
   locationTo,
-  wayPercentage,
+  wayPercentage = 40,
   description,
-  driverInfo,
+  driverId,
 }: IProps): JSX.Element => {
   return (
     <div
@@ -60,7 +60,12 @@ export const ShipmentItem = ({
             </tr>
             <tr>
               <td className="font-bold align-top pr-4">Driver Info</td>
-              <td className="text-slate-500">{driverInfo}</td>
+              <td className="text-slate-500">
+                <Link
+                  className="underline text-sky-700 hover:text-sky-500"
+                  href={`/driver/profile/${driverId}`}
+                >Show driver info</Link>
+              </td>
             </tr>
           </tbody>
         </table>

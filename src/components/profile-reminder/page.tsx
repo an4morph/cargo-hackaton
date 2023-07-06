@@ -4,27 +4,22 @@ import { InfoModal } from '@/components/modal/info'
 import { useState } from 'react'
 import { PrimaryButton } from '@/components/button/primary'
 import { BsArrowRight } from 'react-icons/bs'
-import { UserTypes } from '@/types/base.d'
 import { SecondaryButton } from '@/components/button/secondary'
 import { observer } from 'mobx-react-lite'
-import notificatons from '@/store/notifications'
 import { useRouter } from 'next/navigation'
 
-interface IProps {
-  userType: UserTypes
-}
 
-export const ProfileReminder = observer(({ userType }: IProps): JSX.Element => {
+export const ProfileReminder = observer((): JSX.Element => {
   const [isOpen, setOpen] = useState(true)
   const router = useRouter()
 
   const onClose = () => {
     setOpen(false)
-    notificatons.hideProfileFillNotice()
+    localStorage.setItem('notify', 'true')
   }
   const goToProfile = () => {
-    router.push(`/${userType}/profile/1/edit`)
-    notificatons.hideProfileFillNotice()
+    router.push(`/${localStorage.getItem('userType')}/profile/${localStorage.getItem('userId')}/edit`)
+    localStorage.setItem('notify', 'true')
   }
 
   return (

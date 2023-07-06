@@ -1,10 +1,7 @@
 'use client'
 import { PrimaryButton } from '@/components/button/primary'
-import { ProfileReminder } from '@/components/profile-reminder/page'
-import { ShipmentStatuses, UserTypes } from '@/types/base.d'
-import notificatons from '@/store/notifications'
+import { ShipmentStatuses } from '@/types/base.d'
 import Link from 'next/link'
-import { observer } from 'mobx-react-lite'
 import { ShipmentItem } from '@/components/shipment-item'
 import { mockShipments } from './mockData'
 import { RadioGroup } from '@/components/filter-radio-group'
@@ -12,13 +9,13 @@ import { useState } from 'react'
 import { useGetJobs } from '@/helpers/hooks/useGetJobs'
 
 
-const ShipperDashboardPage = observer((): JSX.Element | null => {
+const ShipperDashboardPage = (): JSX.Element | null => {
   const [filterValue, setFilterValue] = useState<ShipmentStatuses | 'all'>('all')
   const { data, loading, error } = useGetJobs()
 
   console.log({ data, loading, error })
 
-  // if (!data) return null
+  //if (!data) return null
 
   const onChange = (value: ShipmentStatuses | 'all') => {
     setFilterValue(value)
@@ -27,7 +24,7 @@ const ShipperDashboardPage = observer((): JSX.Element | null => {
   return (
     <div className="responsive py-10">
       <div className="flex justify-between">
-        <h1 className="text-xl mb-4">My shipments ({mockShipments.length})</h1>
+        <h1 className="text-xl mb-4">My shipments ({data?.count})</h1>
         <Link href="/shipments/new">
           <PrimaryButton>New shipment</PrimaryButton>
         </Link>
@@ -52,7 +49,7 @@ const ShipperDashboardPage = observer((): JSX.Element | null => {
         </div>
         <ul className="paper ml-4 w-4/5 p-6">
           {
-            mockShipments
+            data?.results
               .filter(s => {
                 if (filterValue === 'all') return true
                 return s.status === filterValue
@@ -60,24 +57,21 @@ const ShipperDashboardPage = observer((): JSX.Element | null => {
               .map(s => (
                 <ShipmentItem
                   className="mb-4"
-                  driverInfo={s.driverInfo}
-                  description={s.description}
-                  wayPercentage={s.wayPercentage}
-                  fromDate={s.fromDate}
-                  toDate={s.toDate}
+                  driverId={s.driver_id}
+                  description={s.title}
+                  fromDate={new Date().toLocaleString()}
+                  toDate={new Date().toLocaleString()}
                   status={s.status}
-                  locationFrom={s.locationFrom}
-                  locationTo={s.locationTo}
+                  locationFrom="test"
+                  locationTo="test"
                   id={s.id}
                   key={s.id}
                 />))
           }
         </ul>
       </div>
-
-      {notificatons.showProfileFillNotice && <ProfileReminder userType={UserTypes.shipper} />}
     </div>
   )
-})
+}
 
 export default ShipperDashboardPage

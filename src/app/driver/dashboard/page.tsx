@@ -1,8 +1,5 @@
 'use client'
 
-import { ProfileReminder } from '@/components/profile-reminder/page'
-import { UserTypes } from '@/types/base.d'
-import notificatons from '@/store/notifications'
 import { observer } from 'mobx-react-lite'
 import { mockShipments } from './mockData'
 import { ActiveShipmentsList } from './list'
@@ -25,8 +22,6 @@ const DriverDashboardPage = observer((): JSX.Element | null => {
 
       <h2 className="text-xl mb-4">My shipments ({mockShipments.length})</h2>
       <ActiveShipmentsList list={mockShipments} />
-
-      {notificatons.showProfileFillNotice && <ProfileReminder userType={UserTypes.driver} />}
     </div>
   )
 })
