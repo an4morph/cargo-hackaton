@@ -2,16 +2,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { PrimaryButton } from '@/components/button/primary'
-<<<<<<< HEAD
 import { MainShipperInfo } from '@/components/mainShipperInfo'
 import { AboutShipperInfo } from '@/components/aboutShipperInfo'
 // import { ContactInfo } from '@/components/contactInfo'
-=======
-import { MainInfo } from '@/components/mainInfo'
-import { AboutInfo } from '@/components/aboutInfo'
-import { ContactInfo } from '@/components/contactInfo'
 import { useGetShipper } from '@/helpers/hooks/useGetShipper'
->>>>>>> main
 
 
 interface IProps {
