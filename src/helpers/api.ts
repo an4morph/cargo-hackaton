@@ -89,4 +89,4 @@ export const editCompanyProfile = (id: string | number, data: Partial<CompanyMod
 export const getJobs = () => secureGet('/job/')
 export const getJobsHistory = () => secureGet('/job/history/')
 
-export const createJob = (data: Partial<JobModel>) => securePost('/job', data)
+export const createJob = (data: Partial<JobModel>) => securePost('/job/', data)

@@ -3,7 +3,6 @@ import { PrimaryButton } from '@/components/button/primary'
 import { ShipmentStatuses } from '@/types/base.d'
 import Link from 'next/link'
 import { ShipmentItem } from '@/components/shipment-item'
-import { mockShipments } from './mockData'
 import { RadioGroup } from '@/components/filter-radio-group'
 import { useState } from 'react'
 import { useGetJobs } from '@/helpers/hooks/useGetJobs'
@@ -12,8 +11,6 @@ import { useGetJobs } from '@/helpers/hooks/useGetJobs'
 const ShipperDashboardPage = (): JSX.Element | null => {
   const [filterValue, setFilterValue] = useState<ShipmentStatuses | 'all'>('all')
   const { data, loading, error } = useGetJobs()
-
-  console.log({ data, loading, error })
 
   //if (!data) return null
 
@@ -66,6 +63,7 @@ const ShipperDashboardPage = (): JSX.Element | null => {
                   locationTo="test"
                   id={s.id}
                   key={s.id}
+                  weight={s.weight_of_goods}
                 />))
           }
         </ul>
