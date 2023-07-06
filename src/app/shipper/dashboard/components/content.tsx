@@ -31,7 +31,14 @@ const ShipperDashboardPageContent = ({ data }: { data: JobModel[] }): JSX.Elemen
           onChange={onChange}
         />
       </div>
-      <ul className="paper ml-4 w-4/5 p-6">
+      <ul className="paper ml-4 w-4/5 p-6 self-start">
+        {
+          !data
+            .filter(s => {
+              if (filterValue === 'all') return true
+              return s.status === filterValue
+            }).length && (<div className="text-center text-slate-500 font-medium">No items yet</div>)
+        }
         {
           data
             .filter(s => {
