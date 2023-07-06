@@ -47,7 +47,9 @@ export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Eleme
               <span className="font-black text-green-800 mb-5">(Driver)</span>
             </div>
             <div className="flex mt-8 gap-x-5 w-full">
-              <PrimaryButton className="bg-gray-500 hover:bg-black">Message</PrimaryButton>
+              <Link href="/chat/1">
+                <PrimaryButton className="bg-gray-500 hover:bg-black">Message</PrimaryButton>
+              </Link>
               {/* <PrimaryButton className="bg-gray-500 hover:bg-black">Like</PrimaryButton>
               <PrimaryButton className="bg-gray-500 hover:bg-black">Plan</PrimaryButton> */}
               <PrimaryButton onClick={() => setIsOpen(true)} className="bg-gray-500 hover:bg-black">Truck Info</PrimaryButton>
