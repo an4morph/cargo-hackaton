@@ -38,12 +38,12 @@ export const TruckCharacteristic = ({ car_info }: IProps): JSX.Element | null =>
     <div className="w-full">
       <div className="flex-col w-full bg-white">
         <h2 className="text-3xl font-bold my-4">Trucks characteristic</h2>
-        <div className="flex justify-between mb-10">
+        {/* <div className="flex justify-between mb-10">
           <TruckType
             src={truck?.src}
             text={truck?.text}
           />
-        </div>
+        </div> */}
         <div className="flex gap-x-5 justify-between w-full">
           <div className="w-full">
             <Image
