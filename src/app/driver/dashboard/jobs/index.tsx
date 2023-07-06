@@ -23,6 +23,7 @@ export const DriverJobs = ({ className, list }: IProps): JSX.Element => {
             locationTo={s.destination_location}
             id={s.id}
             key={s.id}
+            fullObj={s}
           />))
       }
     </div>

@@ -61,9 +61,9 @@ export const securePost = <T>(route: string, data: T, errorText?: string) => fet
     return res.json()
   })
 
-export const securePut = <T>(route: string, data: T, errorText?: string) => fetch(url(route), {
+export const securePut = <T>(route: string, data?: T, errorText?: string) => fetch(url(route), {
   method: 'PUT',
-  body: JSON.stringify(data),
+  body: data ? JSON.stringify(data) : null,
   headers: {
     'Authorization': `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json',
@@ -85,6 +85,9 @@ export const editDriverProfile = (id: string | number, data: Partial<DriverModel
   securePut<Partial<ShipperModel>>(`/profile/${id}/`, data)
 export const editCompanyProfile = (id: string | number, data: Partial<CompanyModel>) =>
   securePut<Partial<ShipperModel>>(`/profile/company/${id}/`, data)
+
+export const takeJob = (id: string | number, data: Partial<JobModel>) =>
+  securePut(`/job/${id}/order/`, data)
 
 export const getJobs = () => secureGet('/job/')
 export const getJobItem = (id: string | number) => secureGet(`/job/${id}/`)

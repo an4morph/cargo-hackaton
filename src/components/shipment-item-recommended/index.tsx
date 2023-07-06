@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { DestinationInfo } from './destination-info'
 import { SecondaryButton } from '../button/secondary'
 import { BsArrowRight } from 'react-icons/bs'
+import { takeJob } from '@/helpers/api'
+import { JobModel } from '@/types/models'
 
 interface IProps {
   className?: string
@@ -16,6 +18,7 @@ interface IProps {
   description: string,
   driverId?: string | number
   weight?: string | number
+  fullObj: Partial<JobModel>
 }
 
 export const ShipmentItemRecommended = ({
@@ -29,7 +32,20 @@ export const ShipmentItemRecommended = ({
   description,
   driverId,
   weight,
+  fullObj,
 }: IProps): JSX.Element => {
+  const takeOrder = () => {
+    takeJob(id, fullObj)
+      .then(() => {
+        alert('You successfully take order!')
+        window.location.reload()
+      })
+      .catch(() => {
+        alert('Error while taking order')
+        window.location.reload()
+      })
+  }
+
   return (
     <div
       className={cx(
@@ -75,7 +91,10 @@ export const ShipmentItemRecommended = ({
       </table>
 
       <div className="">
-        <SecondaryButton className="!bg-sky-700 !text-white !hover:bg-sky-500 border-none w-full mt-5">
+        <SecondaryButton
+          onClick={takeOrder}
+          className="!bg-sky-700 !text-white !hover:bg-sky-500 border-none w-full mt-5"
+        >
           Take Order
         </SecondaryButton>
         <Link href={`/shipments/${id}`} className="block mt-2">
