@@ -11,7 +11,6 @@ interface IProps {
 
 
 export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
-  console.log(data)
   return (
     <>
       <h1 className="text-2xl font-bold mb-4">Order №{data.id}</h1>
@@ -28,44 +27,47 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
                 src="/shipment-map.png"
               />
             </div>
-            <div className="w-1/2 paper p-8">
-              <div className="mb-2">
-                <span className="font-bold">Status:</span>
+            <div className="flex-col justify-between w-1/2 paper p-8">
+              <div>
+                <div className="mb-2">
+                  <span className="font-bold">Status:</span>
               &nbsp;{data?.status}
-              </div>
-              <div className="mb-2">
-                <span className="font-bold">From:</span>
+                </div>
+                <div className="mb-2">
+                  <span className="font-bold">From:</span>
               &nbsp;{
-                  data.pickup_location
-                }
-              </div>
-              <div className="mb-4">
-                <span className="font-bold">To:</span>
+                    data.pickup_location
+                  }
+                </div>
+                <div className="mb-4">
+                  <span className="font-bold">To:</span>
               &nbsp;{data.destination_location}
-              </div>
-              <div className="mb-4">
-                <span className="font-bold">Pickup Date:</span>
-              &nbsp;{data.pickup_date}
-              </div>
-              <div className="mb-4">
-                <span className="font-bold">Pickup Location:</span>
-              &nbsp;{data.pickup_location}
-              </div>
-              <div className="mb-4">
-                <span className="font-bold">Type Of Goods:</span>
+                </div>
+                <div className="mb-4">
+                  <span className="font-bold">Pickup Date:</span>
+              &nbsp;
+                  {data.pickup_date}
+                </div>
+                <div className="mb-4">
+                  <span className="font-bold">Delivery Date:</span>
+              &nbsp;{data.delivery_date}
+                </div>
+                <div className="mb-4">
+                  <span className="font-bold">Type Of Goods:</span>
               &nbsp;{data.type_of_goods}
-              </div>
-              <div className="mb-4">
-                <span className="font-bold">Weight Of Goods:</span>
+                </div>
+                <div className="mb-4">
+                  <span className="font-bold">Weight Of Goods:</span>
               &nbsp;{data.weight_of_goods}
-              </div>
-              <div className="mb-4">
-                <span className="font-bold">Special Instruction:</span>
+                </div>
+                <div className="mb-4">
+                  <span className="font-bold">Special Instruction:</span>
               &nbsp;{data.special_instruction}
-              </div>
-              <div className="mb-4">
-                <span className="font-bold">Required Equipment:</span>
+                </div>
+                <div className="mb-4">
+                  <span className="font-bold">Required Equipment:</span>
               &nbsp;{data.required_equipment}
+                </div>
               </div>
               {/* <p className="mb-6">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laborum maxime incidunt
@@ -82,27 +84,27 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
               et, reprehenderit quibusdam ea ex illo corporis labore magnam repellat nulla! Quis in iure, recusandae
               iste possimus consequatur quasi est inventore necessitatibus quod aliquid deserunt.
               </p> */}
-            </div>
-            <div className="w-1/5 min-w-[20%] paper p-8 self-start">
+              <div className="w-full self-start mt-10">
 
-              <h2 className="text-lg font-bold mb-4">Driver info</h2>
-              {
-                data.driver_id
-                  ? (
-                    <Link href={`/driver/profile/${data.driver_id}`}>
-                      <PrimaryButton>Show driver profile</PrimaryButton>
-                    </Link>
-                  ) : (
-                    <p className="text-slate-500">No driver found for this order yet</p>
-                  )
-              }
+                <h2 className="text-lg font-bold mb-4">Driver info</h2>
+                {
+                  data.driver_id
+                    ? (
+                      <Link href={`/driver/profile/${data.driver_id}`}>
+                        <PrimaryButton>Show driver profile</PrimaryButton>
+                      </Link>
+                    ) : (
+                      <p className="text-slate-500">No driver found for this order yet</p>
+                    )
+                }
+              </div>
             </div>
           </div>
         </div>
       </div>
 
 
-      {
+      {/* {
         data.driver_id && (
           <div>
             <h2 className="text-xl mb-4 mt-10">Tracking</h2>
@@ -114,7 +116,7 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
             </div>
           </div>
         )
-      }
+      } */}
     </>
   )
 }
