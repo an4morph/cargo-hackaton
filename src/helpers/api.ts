@@ -87,6 +87,7 @@ export const editCompanyProfile = (id: string | number, data: Partial<CompanyMod
   securePut<Partial<ShipperModel>>(`/profile/company/${id}/`, data)
 
 export const getJobs = () => secureGet('/job/')
+export const getJobItem = (id: string | number) => secureGet(`/job/${id}/`)
 export const getJobsHistory = () => secureGet('/job/history/')
 
 export const createJob = (data: Partial<JobModel>) => securePost('/job/', data)
