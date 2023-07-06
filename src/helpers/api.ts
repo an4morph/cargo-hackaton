@@ -72,3 +72,6 @@ export const editDriverProfile = (id: string | number, data: Partial<ShipperMode
   securePut<Partial<ShipperModel>>(`/profile/${id}/`, data)
 export const editCompanyProfile = (id: string | number, data: Partial<ShipperModel>) =>
   securePut<Partial<ShipperModel>>(`/profile/company/${id}/`, data)
+
+export const getJobs = () => secureGet('/job/')
+export const getJobsHistory = () => secureGet('/job/history/')
