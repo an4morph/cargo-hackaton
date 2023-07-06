@@ -15,7 +15,8 @@ interface IProps {
   locationTo: string,
   wayPercentage?: number,
   description: string,
-  driverId: string | number
+  driverId?: string | number
+  weight?: string | number
 }
 
 export const ShipmentItem = ({
@@ -29,6 +30,7 @@ export const ShipmentItem = ({
   wayPercentage = 40,
   description,
   driverId,
+  weight,
 }: IProps): JSX.Element => {
   return (
     <div
@@ -56,22 +58,34 @@ export const ShipmentItem = ({
           <tbody>
             <tr>
               <td className="font-bold align-top pr-4">Description</td>
-              <td className="text-slate-500">{description}</td>
+              <td className="text-slate-500 align-top">{description}</td>
             </tr>
-            <tr>
-              <td className="font-bold align-top pr-4">Driver Info</td>
-              <td className="text-slate-500">
-                <Link
-                  className="underline text-sky-700 hover:text-sky-500"
-                  href={`/driver/profile/${driverId}`}
-                >Show driver info</Link>
-              </td>
-            </tr>
+            {
+              driverId && (
+                <tr>
+                  <td className="font-bold align-top pr-4">Driver Info</td>
+                  <td className="text-slate-500 align-top">
+                    <Link
+                      className="underline text-sky-700 hover:text-sky-500"
+                      href={`/driver/profile/${driverId}`}
+                    >Show driver info</Link>
+                  </td>
+                </tr>
+              )
+            }
+            {
+              weight && (
+                <tr>
+                  <td className="font-bold align-top pr-4">Weight</td>
+                  <td className="text-slate-500 align-top">{weight}</td>
+                </tr>
+              )
+            }
           </tbody>
         </table>
 
         <Link href={`/shipments/${id}`} className="block shrink-0 ml-4 self-end">
-          <SecondaryButton className="bg-sky-700 text-white hover:bg-sky-500 border-none">
+          <SecondaryButton className="!bg-sky-700 text-white !hover:bg-sky-500 border-none">
             More Info
           </SecondaryButton>
         </Link>

@@ -1,17 +1,12 @@
 'use client'
-
 import { ShipmentStatuses } from '@/types/base.d'
-import { observer } from 'mobx-react-lite'
 import { ShipmentItem } from '@/components/shipment-item'
 import { RadioGroup } from '@/components/filter-radio-group'
 import { useState } from 'react'
 import { JobModel } from '@/types/models'
 
-interface IProps {
-  list: JobModel[]
-}
 
-export const ActiveShipmentsList = observer(({ list }: IProps): JSX.Element => {
+const ShipperDashboardPageContent = ({ data }: { data: JobModel[] }): JSX.Element | null => {
   const [filterValue, setFilterValue] = useState<ShipmentStatuses | 'all'>('all')
 
   const onChange = (value: ShipmentStatuses | 'all') => {
@@ -27,6 +22,7 @@ export const ActiveShipmentsList = observer(({ list }: IProps): JSX.Element => {
           name="filter"
           options={[
             { value: 'all', text: 'All' },
+            { value: ShipmentStatuses.wait, text: ShipmentStatuses.wait },
             { value: ShipmentStatuses.load, text: ShipmentStatuses.load },
             { value: ShipmentStatuses.delivering, text: ShipmentStatuses.delivering },
             { value: ShipmentStatuses.done, text: ShipmentStatuses.done },
@@ -37,34 +33,36 @@ export const ActiveShipmentsList = observer(({ list }: IProps): JSX.Element => {
       </div>
       <ul className="paper ml-4 w-4/5 p-6 self-start">
         {
-          !list
-            .filter(item => {
+          !data
+            .filter(s => {
               if (filterValue === 'all') return true
-              return item.status === filterValue
+              return s.status === filterValue
             }).length && (<div className="text-center text-slate-500 font-medium">No items yet</div>)
         }
         {
-          list
-            .filter(item => {
+          data
+            .filter(s => {
               if (filterValue === 'all') return true
-              return item.status === filterValue
+              return s.status === filterValue
             })
             .map(s => (
               <ShipmentItem
                 className="mb-4"
                 driverId={s.driver_id}
                 description={s.title}
-                wayPercentage={60}
-                fromDate="11.02.2022"
-                toDate="23.04.2024"
+                fromDate={new Date().toLocaleString()}
+                toDate={new Date().toLocaleString()}
                 status={s.status}
-                locationFrom={s.pickup_location}
-                locationTo={s.destination_location}
+                locationFrom="test"
+                locationTo="test"
                 id={s.id}
                 key={s.id}
+                weight={s.weight_of_goods}
               />))
         }
       </ul>
     </div>
   )
-})
+}
+
+export default ShipperDashboardPageContent

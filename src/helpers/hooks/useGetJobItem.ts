@@ -1,17 +1,16 @@
 import { JobModel } from '@/types/models.d'
 import { useCallback, useEffect, useState } from 'react'
-import { getJobsHistory } from '@/helpers/api'
+import { getJobItem } from '@/helpers/api'
 
-export const useGetJobsHistory = () => {
+export const useGetJobItem = (id: string | number) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>('')
-  const [data, setData] = useState<JobModel[] | null>(null)
+  const [data, setData] = useState<JobModel | null>(null)
 
   const getData = useCallback(async() => {
-    setLoading(true)
     try {
       setError('')
-      const response = await getJobsHistory()
+      const response = await getJobItem(id)
       setData(response)
     }
     catch (err: any) {
@@ -20,9 +19,10 @@ export const useGetJobsHistory = () => {
     finally {
       setLoading(false)
     }
-  }, [])
+  }, [id])
 
   useEffect(() => {
+    setLoading(true)
     getData()
   }, [getData])
 

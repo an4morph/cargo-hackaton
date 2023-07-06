@@ -12,7 +12,7 @@ class User {
     makeAutoObservable(this)
   }
 
-  setUser(user: UserT) {
+  setUser(user: UserT | null) {
     this.data = user
   }
   setRole(data: UserTypes) {
