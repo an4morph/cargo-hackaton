@@ -3,7 +3,11 @@
 import { BackButton } from '@/components/button/back'
 import { PrimaryButton } from '@/components/button/primary'
 import { BasicInput } from '@/components/input/base'
+import { editDriverProfile } from '@/helpers/api'
+import { useGetDriver } from '@/helpers/hooks/useGetDriver'
+import { DriverModel } from '@/types/models'
 import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 interface IProps {
@@ -12,22 +16,23 @@ interface IProps {
   }
 }
 
-interface DriverProfileForm {
-  name: string
-  email: string
-  location: string
-  about: string
-}
+const EditDriverPage = ({ params: { id } }: IProps): JSX.Element | null => {
+  const { data, loading, error } = useGetDriver(id)
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<Partial<DriverModel>>()
 
-const EditDriverPage = ({ params: { id } }: IProps): JSX.Element => {
-  const { register, handleSubmit, formState: { errors } } = useForm<DriverProfileForm>()
+  useEffect(() => {
+    if (data) {
+      setValue('first_name', data.first_name)
+      setValue('last_name', data.last_name)
+      setValue('user', data.user)
+    }
+  }, [data, setValue])
 
-  const onSubmit = (data: DriverProfileForm) => {
-    // eslint-disable-next-line
-    console.log('data', id, data)
+  const onSubmit = (data: Partial<DriverModel>) => {
+    editDriverProfile(id, data)
   }
 
-
+  if (!data) return null
   return (
     <div className="py-10 responsive">
       <BackButton text="Back to dashboard" href="/driver/dashboard" />
@@ -35,76 +40,20 @@ const EditDriverPage = ({ params: { id } }: IProps): JSX.Element => {
       <form className="paper p-4 w-full mx-auto">
         <BasicInput
           id="name"
-          label="Full name"
+          label="First name *"
           className="pb-4"
-          {...register('name', {
+          {...register('first_name', {
             required: 'Required field',
           })}
-          error={errors.name?.message}
+          error={errors.first_name?.message}
         />
         <BasicInput
-          id="email"
-          label="Email"
+          id="last_name"
+          label="Last name"
           className="pb-4"
-          {...register('email', {
-            required: 'Required field',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Email is incorrect, check it, please',
-            },
-          })}
-          error={errors.email?.message}
+          {...register('last_name')}
+          error={errors.first_name?.message}
         />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-        <BasicInput
-          id="location"
-          label="Location"
-          className="pb-4"
-          {...register('location')}
-          error={errors.location?.message}
-        />
-
         <PrimaryButton
           className="mt-4 w-full"
           onClick={handleSubmit(onSubmit)}

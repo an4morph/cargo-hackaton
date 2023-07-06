@@ -47,13 +47,13 @@ export default function ProfileShipperPage({ params: { id } }: IProps): JSX.Elem
         </div>
         <div className="flex gap-x-10">
           {/* <h1 className="text-3xl font-bold bg-black text-white p-4 rounded-lg h-16">Company Name</h1> */}
-          <h1 className="text-3xl font-bold bg-green-800 text-white p-4 rounded-lg h-16">{data.status}</h1>
+          <h1 className="text-3xl font-bold bg-green-800 text-white p-4 rounded-lg h-16">status</h1>
         </div>
       </div>
       {/* <p>{id}</p> */}
       <div className="flex my-10 justify-evenly gap-x-5">
         <MainInfo data={data} />
-        <AboutInfo data={data} />
+        {/* <AboutInfo data={data} /> */}
         {/* <ContactInfo /> */}
       </div>
       <div />
