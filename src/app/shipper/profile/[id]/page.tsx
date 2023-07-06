@@ -41,7 +41,7 @@ export default function ProfileShipperPage({ params: { id } }: IProps): JSX.Elem
             <div className="flex mt-8 gap-x-5 w-full">
               <PrimaryButton className="bg-gray-500 hover:bg-black">Message</PrimaryButton>
               <PrimaryButton className="bg-gray-500 hover:bg-black">Like</PrimaryButton>
-              <PrimaryButton className="bg-gray-500 hover:bg-black">Plan</PrimaryButton>
+              {/* <PrimaryButton className="bg-gray-500 hover:bg-black">Plan</PrimaryButton> */}
             </div>
           </div>
         </div>
