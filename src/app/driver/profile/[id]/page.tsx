@@ -9,6 +9,7 @@ import { TruckCharacteristic } from '@/components/truckChara'
 import { InfoModal } from '@/components/modal/info'
 import { useState } from 'react'
 import { useGetDriver } from '@/helpers/hooks/useGetDriver'
+import Link from 'next/link'
 
 
 interface IProps {
@@ -50,12 +51,19 @@ export default function ProfileDriverPage({ params: { id } }: IProps): JSX.Eleme
               {/* <PrimaryButton className="bg-gray-500 hover:bg-black">Like</PrimaryButton>
               <PrimaryButton className="bg-gray-500 hover:bg-black">Plan</PrimaryButton> */}
               <PrimaryButton onClick={() => setIsOpen(true)} className="bg-gray-500 hover:bg-black">Truck Info</PrimaryButton>
+              {
+                localStorage.getItem('userId') === id && (
+                  <Link href={`/driver/profile/${id}/edit`}>
+                    <PrimaryButton className="bg-gray-500 hover:bg-black">Edit</PrimaryButton>
+                  </Link>
+                )
+              }
             </div>
           </div>
         </div>
         <div className="flex gap-x-10">
           {
-            data?.company_name ? <h1 className="text-3xl font-bold bg-black text-white p-4 rounded-lg h-16">{}</h1> : <></>
+            data?.company_name && <h1 className="text-3xl font-bold bg-black text-white p-4 rounded-lg h-16">{data.company_name}</h1>
           }
           <h1 className="text-3xl font-bold bg-green-800 text-white p-4 rounded-lg h-16">{data.status}</h1>
         </div>

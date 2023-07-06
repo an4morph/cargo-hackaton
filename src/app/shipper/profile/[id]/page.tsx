@@ -2,16 +2,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { PrimaryButton } from '@/components/button/primary'
-<<<<<<< HEAD
 import { MainShipperInfo } from '@/components/mainShipperInfo'
 import { AboutShipperInfo } from '@/components/aboutShipperInfo'
-// import { ContactInfo } from '@/components/contactInfo'
-=======
-import { MainInfo } from '@/components/mainInfo'
-import { AboutInfo } from '@/components/aboutInfo'
-import { ContactInfo } from '@/components/contactInfo'
 import { useGetShipper } from '@/helpers/hooks/useGetShipper'
->>>>>>> main
 
 
 interface IProps {
@@ -47,7 +40,13 @@ export default function ProfileShipperPage({ params: { id } }: IProps): JSX.Elem
             <div className="flex mt-8 gap-x-5 w-full">
               <PrimaryButton className="bg-gray-500 hover:bg-black">Message</PrimaryButton>
               <PrimaryButton className="bg-gray-500 hover:bg-black">Like</PrimaryButton>
-              <PrimaryButton className="bg-gray-500 hover:bg-black">Plan</PrimaryButton>
+              {
+                localStorage.getItem('userId') === id && (
+                  <Link href={`/shipper/profile/${id}/edit`}>
+                    <PrimaryButton className="bg-gray-500 hover:bg-black">Edit</PrimaryButton>
+                  </Link>
+                )
+              }
             </div>
           </div>
         </div>
