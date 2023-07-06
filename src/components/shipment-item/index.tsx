@@ -1,8 +1,8 @@
 import { ShipmentStatuses } from '@/types/base.d'
 import cx from 'classnames'
 import Link from 'next/link'
-import { DestinationInfo } from './destination-info'
-import { SecondaryButton } from '../button/secondary'
+import { DestinationInfo } from '@/components/destination-info'
+import { SecondaryButton } from '@/components/button/secondary'
 import { StatusBox } from './status'
 import { useMemo } from 'react'
 
