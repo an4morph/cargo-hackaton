@@ -64,7 +64,7 @@ export const ShipmentItemRecommended = ({
         <tbody>
           <tr>
             <td className="font-bold align-top pr-4">Description</td>
-            <td className="text-slate-500 align-top">{description}</td>
+            <td className="text-slate-500 align-top break-all">{description}</td>
           </tr>
           {
             driverId && (
