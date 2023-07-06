@@ -1,9 +1,10 @@
-import { ShipmentStatuses } from '@/types/base'
+import { ShipmentStatuses } from '@/types/base.d'
 import cx from 'classnames'
 import Link from 'next/link'
-import { DestinationInfo } from './destination-info'
-import { SecondaryButton } from '../button/secondary'
+import { DestinationInfo } from '@/components/destination-info'
+import { SecondaryButton } from '@/components/button/secondary'
 import { StatusBox } from './status'
+import { useMemo } from 'react'
 
 interface IProps {
   className?: string
@@ -27,11 +28,15 @@ export const ShipmentItem = ({
   toDate,
   locationFrom,
   locationTo,
-  wayPercentage = 40,
   description,
   driverId,
   weight,
 }: IProps): JSX.Element => {
+  const percent = useMemo(() => {
+    if (status === ShipmentStatuses.wait || status === ShipmentStatuses.load) return 0
+    if (status === ShipmentStatuses.done) return 100
+    else return 35
+  }, [status])
   return (
     <div
       className={cx(
@@ -41,15 +46,15 @@ export const ShipmentItem = ({
     >
       <StatusBox status={status} className="mb-4 inline-block" />
       <div className="flex justify-between">
-        <DestinationInfo address={locationFrom} />
+        <DestinationInfo date={fromDate} address={locationFrom} />
         <input
           className="w-3/5 text-white bg-black"
           type="range"
           min="0"
-          value={wayPercentage}
+          value={percent}
           max="100"
         />
-        <DestinationInfo address={locationTo} />
+        <DestinationInfo date={toDate} address={locationTo} />
       </div>
       <hr className="mt-4" />
 
@@ -58,7 +63,7 @@ export const ShipmentItem = ({
           <tbody>
             <tr>
               <td className="font-bold align-top pr-4">Description</td>
-              <td className="text-slate-500 align-top">{description}</td>
+              <td className="text-slate-500 align-top break-all">{description}</td>
             </tr>
             {
               driverId && (

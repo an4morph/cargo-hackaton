@@ -1,8 +1,8 @@
 import { ShipmentStatuses } from '@/types/base'
 import cx from 'classnames'
 import Link from 'next/link'
-import { DestinationInfo } from './destination-info'
-import { SecondaryButton } from '../button/secondary'
+import { DestinationInfo } from '@/components/destination-info'
+import { SecondaryButton } from '@/components/button/secondary'
 import { BsArrowRight } from 'react-icons/bs'
 import { takeJob } from '@/helpers/api'
 import { JobModel } from '@/types/models'
@@ -54,9 +54,9 @@ export const ShipmentItemRecommended = ({
       )}
     >
       <div className="flex justify-between items-center">
-        <DestinationInfo address={locationFrom} />
+        <DestinationInfo date={fromDate} address={locationFrom} />
         <BsArrowRight className="w-[40px] h-[40px]" />
-        <DestinationInfo address={locationTo} />
+        <DestinationInfo date={toDate} address={locationTo} />
       </div>
       <hr className="mt-4" />
 
@@ -64,7 +64,7 @@ export const ShipmentItemRecommended = ({
         <tbody>
           <tr>
             <td className="font-bold align-top pr-4">Description</td>
-            <td className="text-slate-500 align-top">{description}</td>
+            <td className="text-slate-500 align-top break-all">{description}</td>
           </tr>
           {
             driverId && (
