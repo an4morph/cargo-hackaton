@@ -9,10 +9,16 @@ import { ShipmentItem } from '@/components/shipment-item'
 import { mockShipments } from './mockData'
 import { RadioGroup } from '@/components/filter-radio-group'
 import { useState } from 'react'
+import { useGetJobs } from '@/helpers/hooks/useGetJobs'
 
 
-const ShipperDashboardPage = observer((): JSX.Element => {
+const ShipperDashboardPage = observer((): JSX.Element | null => {
   const [filterValue, setFilterValue] = useState<ShipmentStatuses | 'all'>('all')
+  const { data, loading, error } = useGetJobs()
+
+  console.log({ data, loading, error })
+
+  // if (!data) return null
 
   const onChange = (value: ShipmentStatuses | 'all') => {
     setFilterValue(value)
