@@ -1,6 +1,6 @@
 'use client'
 import { PrimaryButton } from '@/components/button/primary'
-import { SecondaryButton } from '@/components/button/secondary'
+import dateFormat from 'dateformat'
 import { JobModel } from '@/types/models'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,10 +11,18 @@ interface IProps {
 
 
 export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
-  console.log(data)
   return (
     <>
-      <h1 className="text-2xl font-bold mb-4">Order №{data.id}</h1>
+      <div className="flex justify-between">
+        <h1 className="text-2xl font-bold mb-4">Order №{data.id}</h1>
+        {
+          localStorage.getItem('userId') === data.owner.toString() && (
+            <Link href={`/shipments/${data.id}/edit`}>
+              <PrimaryButton>Edit</PrimaryButton>
+            </Link>
+          )
+        }
+      </div>
       <h2 className="text-1xl font-bold mb-4 text-slate-400">{data.title}</h2>
       <div>
         <div>
@@ -35,9 +43,7 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
               </div>
               <div className="mb-2">
                 <span className="font-bold">From:</span>
-              &nbsp;{
-                  data.pickup_location
-                }
+              &nbsp;{data.pickup_location}
               </div>
               <div className="mb-4">
                 <span className="font-bold">To:</span>
@@ -45,11 +51,11 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
               </div>
               <div className="mb-4">
                 <span className="font-bold">Pickup Date:</span>
-              &nbsp;{data.pickup_date}
+              &nbsp;{dateFormat(data.pickup_date, 'dd-mm-yyyy')}
               </div>
               <div className="mb-4">
-                <span className="font-bold">Pickup Location:</span>
-              &nbsp;{data.pickup_location}
+                <span className="font-bold">Delivery Date:</span>
+              &nbsp;{dateFormat(data.delivery_date, 'dd-mm-yyyy')}
               </div>
               <div className="mb-4">
                 <span className="font-bold">Type Of Goods:</span>
@@ -59,29 +65,18 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
                 <span className="font-bold">Weight Of Goods:</span>
               &nbsp;{data.weight_of_goods}
               </div>
-              <div className="mb-4">
-                <span className="font-bold">Special Instruction:</span>
+              {
+                data.special_instruction && (
+                  <div className="mb-4">
+                    <span className="font-bold">Special Instruction:</span>
               &nbsp;{data.special_instruction}
-              </div>
+                  </div>
+                )
+              }
               <div className="mb-4">
                 <span className="font-bold">Required Equipment:</span>
               &nbsp;{data.required_equipment}
               </div>
-              {/* <p className="mb-6">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo laborum maxime incidunt
-              doloribus natus, dolores aliquam commodi ex suscipit sed molestias distinctio quaerat repudiandae
-              reiciendis saepe quidem rem harum deleniti facilis voluptates facere. Eaque eveniet quo quos eligendi
-              tempore, voluptatem dolore labore veritatis fugit tenetur pariatur corrupti sunt magnam totam necessitatibus
-              aut sint perspiciatis hic aperiam maxime inventore dolores ratione nulla voluptate! Tenetur ipsa perferendis
-              amet, odit maiores in dolorem numquam veniam repellendus, ab excepturi aliquam dolorum eius nobis veritatis
-              error asperiores! Totam labore reprehenderit, eum harum, vel, ratione minima eveniet eligendi accusantium
-              consectetur optio rem blanditiis autem repellat rerum.
-              </p>
-              <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus esse quos quasi, ullam ipsam nobis
-              et, reprehenderit quibusdam ea ex illo corporis labore magnam repellat nulla! Quis in iure, recusandae
-              iste possimus consequatur quasi est inventore necessitatibus quod aliquid deserunt.
-              </p> */}
             </div>
             <div className="w-1/5 min-w-[20%] paper p-8 self-start">
 
@@ -100,21 +95,6 @@ export const ShimpmentPageContent = ({ data }: IProps): JSX.Element => {
           </div>
         </div>
       </div>
-
-
-      {
-        data.driver_id && (
-          <div>
-            <h2 className="text-xl mb-4 mt-10">Tracking</h2>
-            <div className="w-full h-[400px] relative">
-              <iframe
-                title="result"
-                src="http://34.89.184.248/api/v1/job/map/"
-              />
-            </div>
-          </div>
-        )
-      }
     </>
   )
 }

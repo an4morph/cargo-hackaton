@@ -57,7 +57,7 @@ const EditShipmentPage = ({ params: { id } }: IProps): JSX.Element | null => {
       <div className="flex justify-between">
         <BackButton />
       </div>
-      <h1 className="text-2xl font-bold mt-4 mb-6">Edit my profile</h1>
+      <h1 className="text-2xl font-bold mt-4 mb-6">Edit shipment</h1>
       <form className="paper p-4 w-full mx-auto">
         <BasicInput
           id="title"
