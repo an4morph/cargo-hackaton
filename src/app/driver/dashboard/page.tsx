@@ -17,7 +17,7 @@ const DriverDashboardPage = observer((): JSX.Element => {
       <h2 className="text-xl mb-4">My shipments ({mockShipments.length})</h2>
       <ActiveShipmentsList list={mockShipments} />
 
-      {notificatons.showProfileFillNotice && <ProfileReminder userType={UserTypes.shipper} />}
+      {notificatons.showProfileFillNotice && <ProfileReminder userType={UserTypes.driver} />}
     </div>
   )
 })
