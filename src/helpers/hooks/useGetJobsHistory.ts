@@ -5,7 +5,7 @@ import { getJobsHistory } from '@/helpers/api'
 export const useGetJobsHistory = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>('')
-  const [data, setData] = useState<JobModel | null>(null)
+  const [data, setData] = useState<JobModel[] | null>(null)
 
   const getData = useCallback(async() => {
     setLoading(true)
