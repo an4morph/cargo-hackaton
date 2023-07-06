@@ -6,19 +6,24 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { BackButton } from '@/components/button/back'
 import { useCreateJob } from '@/helpers/hooks/useCreateJob'
 import { JobModel } from '@/types/models'
-
-type FormData = {
-  from: string
-  to: string
-}
+import { strDateToISO } from '@/helpers/date'
+import { useRouter } from 'next/navigation'
 
 
 export default function NewShipmentFormPage(): JSX.Element {
-  const { register, handleSubmit, formState: { errors } } = useForm<Partial<JobModel>>()
-  const { createData, loading, error } = useCreateJob()
+  const { register, handleSubmit, formState: { errors } } = useForm<JobModel>()
+  const { createData, loading } = useCreateJob()
+  const router = useRouter()
 
-  const onSubmit: SubmitHandler<Partial<JobModel>> = (data) => {
-    createData(data)
+  const onSubmit: SubmitHandler<JobModel> = (form) => {
+    const newData = {
+      ...form,
+      pickup_date: strDateToISO(form.pickup_date),
+      delivery_date: strDateToISO(form.delivery_date),
+    }
+    createData(newData, () => {
+      router.push('/shipper/dashboard')
+    })
   }
 
   return (
@@ -48,6 +53,7 @@ export default function NewShipmentFormPage(): JSX.Element {
           <BasicInput
             id="pickup_date"
             label="pickup_date"
+            type="date"
             className="pb-4"
             {...register('pickup_date', {
               required: 'Обязательное поле',
@@ -57,6 +63,7 @@ export default function NewShipmentFormPage(): JSX.Element {
           <BasicInput
             id="delivery_date"
             label="delivery_date"
+            type="date"
             className="pb-4"
             {...register('delivery_date', {
               required: 'Обязательное поле',
@@ -103,8 +110,9 @@ export default function NewShipmentFormPage(): JSX.Element {
           <PrimaryButton
             className="mt-4 w-full"
             onClick={handleSubmit(onSubmit)}
+            disabled={loading}
           >
-          Создать заявку
+            {loading ? 'Loading...' : 'Create Shipment'}
           </PrimaryButton>
         </form>
       </div>
