@@ -6,6 +6,11 @@ import { UserTypeRadioGroup } from '@/components/user-type-radio-group'
 import { UserTypes } from '@/types/base.d'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import * as api from '@/helpers/api'
+import user from '@/store/user'
+import { observer } from 'mobx-react-lite'
+import { ErrorText } from '@/components/error'
 
 export interface SignUpFormData {
   email: string
@@ -14,13 +19,41 @@ export interface SignUpFormData {
   userType: UserTypes
 }
 
-const SignUpPage = ():JSX.Element => {
+const SignUpPage = observer(():JSX.Element => {
   const { register, handleSubmit, formState: { errors }, getValues } = useForm<SignUpFormData>()
   const router = useRouter()
+  const [formError, setFormError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
-  const onSubmit = (data: SignUpFormData) => {
-    // eslint-disable-next-line
-    router.push(`/${data.userType}/dashboard`)
+  const onSubmit = async(form: SignUpFormData) => {
+    setLoading(true)
+    try {
+      setFormError(null)
+      const { id, role } = await api.signup(form.userType, {
+        email: form.email,
+        password: form.password,
+      })
+      user.setRole(role)
+      if (role === UserTypes.company) {
+        const data = await api.getCompanyProfile(id)
+        user.setUser(data)
+      }
+      if (role === UserTypes.driver) {
+        const data = await api.getDriverProfile(id)
+        user.setUser(data)
+      }
+      if (role === UserTypes.shipper) {
+        const data = await api.getShipperProfile(id)
+        user.setUser(data)
+      }
+      router.push(`/${role}/dashboard`)
+    }
+    catch (err: any) {
+      setFormError(err?.message)
+    }
+    finally {
+      setLoading(false)
+    }
   }
 
   const validatePasswordMatch = (value: string) => {
@@ -76,12 +109,15 @@ const SignUpPage = ():JSX.Element => {
         <PrimaryButton
           className="mt-4 w-full"
           onClick={handleSubmit(onSubmit)}
+          disabled={loading}
         >
-          Sign up
+          {loading ? 'Loading' : 'Sign up'}
+
         </PrimaryButton>
+        {formError && <ErrorText className="text-center mt-4 text-base">{formError}</ErrorText>}
       </form>
     </div>
   )
-}
+})
 
 export default SignUpPage

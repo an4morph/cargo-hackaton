@@ -37,6 +37,25 @@ export const login = (body: { email: string, password: string }) => fetch(url('/
   }
 })
 
+export const signup = (role: string, body: { email: string, password: string }) => fetch(url(`/account/register/${role}/`), {
+  method: 'POST',
+  body: JSON.stringify({ ...body, password_confirm: body.password }),
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}).then((res) => {
+  if (!res.ok) throw new Error('Login fetch error')
+  return res.json()
+}).then(({ token, profile }: LoginResponse) => {
+  localStorage.setItem('token', token.access)
+  localStorage.setItem('userId', profile[0].toString())
+  localStorage.setItem('userRole', profile[1].toString())
+  return {
+    id: profile[0],
+    role: profile[1],
+  }
+})
+
 const secureGet = (route: string) => fetch(url(route), {
   method: 'GET',
   headers: {
