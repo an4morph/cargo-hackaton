@@ -31,6 +31,13 @@ export const Header = observer(forwardRef((props, ref): JSX.Element => {
 
         <div>
           <menu className="hidden md:flex items-center">
+            {
+              isLogged && (
+                <li className="hover:text-gray-500 ml-10">
+                  <Link href={`/${localStorage.getItem('userRole')}/dashboard`}>Dashboard</Link>
+                </li>
+              )
+            }
             <li className="hover:text-gray-500 ml-10">
               <Link href="/news">News</Link>
             </li>
