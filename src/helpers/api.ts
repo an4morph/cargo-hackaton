@@ -44,16 +44,8 @@ export const signup = (role: string, body: { email: string, password: string }) 
     'Content-Type': 'application/json',
   },
 }).then((res) => {
-  if (!res.ok) throw new Error('Login fetch error')
+  if (!res.ok) throw new Error('Signup fetch error')
   return res.json()
-}).then(({ token, profile }: LoginResponse) => {
-  localStorage.setItem('token', token.access)
-  localStorage.setItem('userId', profile[0].toString())
-  localStorage.setItem('userRole', profile[1].toString())
-  return {
-    id: profile[0],
-    role: profile[1],
-  }
 })
 
 const secureGet = (route: string) => fetch(url(route), {

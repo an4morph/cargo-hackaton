@@ -29,24 +29,12 @@ const SignUpPage = observer(():JSX.Element => {
     setLoading(true)
     try {
       setFormError(null)
-      const { id, role } = await api.signup(form.userType, {
+      await api.signup(form.userType, {
         email: form.email,
         password: form.password,
       })
-      user.setRole(role)
-      if (role === UserTypes.company) {
-        const data = await api.getCompanyProfile(id)
-        user.setUser(data)
-      }
-      if (role === UserTypes.driver) {
-        const data = await api.getDriverProfile(id)
-        user.setUser(data)
-      }
-      if (role === UserTypes.shipper) {
-        const data = await api.getShipperProfile(id)
-        user.setUser(data)
-      }
-      router.push(`/${role}/dashboard`)
+
+      router.push('/login')
     }
     catch (err: any) {
       setFormError(err?.message)
