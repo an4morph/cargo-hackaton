@@ -43,7 +43,7 @@ export const Header = observer(forwardRef((props, ref): JSX.Element => {
                   <>
                     <li className="hover:text-gray-500 ml-10">
                       <Link
-                        href={`/shipper/profile/${localStorage.getItem('userId')}/edit`}
+                        href={`/${localStorage.getItem('userRole')}/profile/${localStorage.getItem('userId')}/edit`}
                         className="border-[1px] border-slate-300 py-1 px-3 rounded-full flex items-center"
                       >
                         <FaUserCircle className="mr-2" />
