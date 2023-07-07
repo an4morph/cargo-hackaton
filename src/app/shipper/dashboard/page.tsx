@@ -6,6 +6,7 @@ import ShipperDashboardPageContent from './components/content'
 import { ErrorText } from '@/components/error'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { ProfileReminder } from '@/components/profile-reminder/page'
 
 
 const ShipperDashboardPage = (): JSX.Element | null => {
@@ -30,6 +31,7 @@ const ShipperDashboardPage = (): JSX.Element | null => {
       {(loading || (!data && !error)) && <div>Loading...</div>}
       {error && <ErrorText>{error}</ErrorText>}
       {data && <ShipperDashboardPageContent data={data.results} />}
+      {!localStorage.getItem('notify') && <ProfileReminder />}
     </div>
   ) : null
 }

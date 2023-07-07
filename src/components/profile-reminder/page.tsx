@@ -18,7 +18,7 @@ export const ProfileReminder = observer((): JSX.Element => {
     localStorage.setItem('notify', 'true')
   }
   const goToProfile = () => {
-    router.push(`/${localStorage.getItem('userType')}/profile/${localStorage.getItem('userId')}/edit`)
+    router.push(`/${localStorage.getItem('userRole')}/profile/${localStorage.getItem('userId')}/edit`)
     localStorage.setItem('notify', 'true')
   }
 
